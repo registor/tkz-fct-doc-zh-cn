@@ -36,8 +36,8 @@
   \def\aqfoottext{suite sur la page suivante\ldots}}%
   \DeclareOption{english}{%
   \locall@ng=1%
-  \def\aqlabelforquest{问题}
-  \def\aqlabelforrep{答案}
+  \def\aqlabelforquest{Questions}
+  \def\aqlabelforrep{Answers}
   \def\aqfoottext{Continued on the next page\ldots}}%
   \DeclareOption{german}{%
   \locall@ng=2%
@@ -49,6 +49,11 @@
   \def\aqlabelforquest{Ερωτήσεις}
   \def\aqlabelforrep{Απαντήσεις}
   \def\aqfoottext{Συνεχίζεται στην επόμενη σελίδα\ldots}}%
+  \DeclareOption{chinese}{%
+  \locall@ng=4%
+  \def\aqlabelforquest{问题}
+  \def\aqlabelforrep{答案}
+  \def\aqfoottext{见下页\ldots}}%
 \ExecuteOptions{french}
 \ProcessOptions\relax
 \RequirePackage{xkeyval}[2005/11/25] 
