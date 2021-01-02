@@ -1,0 +1,107 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+% \subsection{Interpolation}
+\subsection{函数插值}
+
+% Il s'agit ici de trouver un polynôme d'interpolation sur l'intervalle $[-1~;~1]$ de la fonction $f$ définie par :
+例如，需要在$[-1~;~1]$找到对如下多项式$f$进行插值逼近：
+\[
+  f(x)=\frac{1}{1+8x^2}
+\]
+
+% Le polynôme d'interpolation est celui obtenu par la méthode de \tkzimp{Lagrange} :
+插值多项式为拉格朗日多项式：
+
+\begin{equation*}
+\begin{split}
+ P(x) = &1.000000000-0.0000000072x-7.991424876x^2+0.000001079x^3+62.60245358x^4\\
+ & -0.00004253x^5-444.2347594x^6+0.0007118x^7+ 2516.046396x^8 -0.005795x^9\\ &-10240.01777x^{10} +0.025404x^{11}+28118.29594x^{12} -0.05934x^{13} -49850.83249x^{14} \\
+& +0.08097x^{15}+54061.87086x^{16} -0.055620x^{17} -32356.67279x^{18} +0.015440x^{19}\\
+&+8140.046421x^{20}\\
+\end{split}
+\end{equation*}
+
+% Ayant utilisé vingt et un points, le polynôme est de degré $20$. Celui-ci est écrit en utilisant la méthode de \tkzimp{Horner}. Dans un premier temps, on demande à gnuplot de tracer la courbe de f en rouge,  enfin on trace le polynôme d'interpolation en bleu. Les points utilisés sont en jaune.
+根据霍纳的定义，使用了21个点进行插值，多项式的度定义为$20$。
+下面的函数图形中，红色曲线是用\tkzname{gnuplot}绘制的函数$f$的曲线，
+蓝色是插值函数，黄色为插值点。
+
+\subsubsection{Le code}
+\begin{tkzexample}[code only]
+\begin{tikzpicture}
+\tkzInit[xmin=-1,xmax=1,ymin=-1.8,ymax=1.2,xstep=0.1,ystep=0.2]
+\tkzGrid
+\tkzAxeXY
+\tkzFct[samples = 400, line width=4pt, color = red,opacity=.5](-1---1){1/(1+8*\x*\x)}
+ \tkzFct[smooth,samples = 400, line width=1pt, color = blue,domain =-1:1]%
+{1.0+((((((((((((((((((((
+                          8140.04642)*\x
+                            +0.01544)*\x
+                        -32356.67279)*\x
+                            -0.05562)*\x
+                        +54061.87086)*\x
+                            +0.08097)*\x
+                        -49850.83249)*\x
+                            -0.05934)*\x
+                        +28118.29594)*\x
+                            +0.02540)*\x
+                        -10240.01777)*\x
+                            -0.00580)*\x
+                         +2516.04640)*\x
+                            +0.00071)*\x
+                          -444.23476)*\x
+                            -0.00004)*\x
+                           +62.60245)*\x
+                            +0.00000)*\x
+                            -7.99142)*\x
+                            -0.00000)*\x}
+ \tkzSetUpPoint[size=16,color=black,fill=yellow]
+ \foreach \v in {-1,-0.8,---.,1}{\tkzDefPointByFct[draw](\v)}
+\end{tikzpicture}
+\end{tkzexample}
+
+% Le résultat est sur la page suivante où on peut constater le phénomène de \tkzimp{Runge}.
+注意结果图像中的\tkzimp{龙格}现象。
+\subsubsection{插值曲线}
+
+\begin{sidewaysfigure}[htbp]
+\centering
+\begin{tikzpicture}[scale=.75]
+\tkzInit[xmin=-1,xmax=1,ymin=-1.8,ymax=1.2,xstep=0.1,ystep=0.2]
+\tkzGrid
+\tkzAxeXY
+\tkzFct[samples = 400, line width=4pt, color = red,opacity=.5,domain =-1:1]%
+{1/(1+8*\x*\x)}
+ \tkzFct[samples = 400, line width=1pt, color = blue,domain =-1:1]%
+{1.0+
+((((((((((((((((((((
+           8140.04642)*\x
+             +0.01544)*\x
+         -32356.67279)*\x
+             -0.05562)*\x
+         +54061.87086)*\x
+             +0.08097)*\x
+         -49850.83249)*\x
+             -0.05934)*\x
+         +28118.29594)*\x
+             +0.02540)*\x
+         -10240.01777)*\x
+             -0.00580)*\x
+          +2516.04640)*\x
+             +0.00071)*\x
+           -444.23476)*\x
+             -0.00004)*\x
+            +62.60245)*\x
+             +0.00000)*\x
+             -7.99142)*\x
+             -0.00000)*\x}
+ \tkzSetUpPoint[size=8,color=black,fill=yellow]
+ \foreach \v in {-1,-0.8,---.,1}%
+ {\tkzDefPointByFct[draw](\v)}
+\end{tikzpicture}
+\caption{Interpolation : $\dfrac{1}{1+8x^2}$}
+\end{sidewaysfigure}
+
+\end{document}
+\endinput
+

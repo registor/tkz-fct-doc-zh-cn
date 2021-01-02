@@ -1,0 +1,262 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+% \section{Macros pour définir  des surfaces }
+\section{区域填充命令}
+
+% Il s'agit par exemple de représenter la partie du plan comprise entre la courbe représentative d'une fonction, l'axe des abscisses et les droites
+%  d'équation $x=a$ et $x=b$.
+例如，可能通过着色表示一个函数曲线与坐标横轴、直线$x=a$和$x=b$构成的区域。
+
+\subsection{\tkzcname{tkzDrawArea}或\tkzcname{tkzArea}命令：区域填充}  \hypertarget{tda}{}
+
+% \begin{NewMacroBox}{tkzDrawArea}{\oarg{local options}}
+% Les options sont celles de \TIKZ.
+%
+% \begin{tabular}{lll}
+% \toprule
+% options             & défaut & définition                         \\
+% \midrule
+% \TOline{domain}{-5:5}{domaine de la fonction}
+% \TOline{with}{a}{référence de la fonction}
+% \TOline{color}{200}{nombre de points utilisés}
+% \TOline{opacity} {no defaut}{trnsparence}
+% \TOline{style}{black}{couleur de la ligne}
+% \end{tabular}
+% \end{NewMacroBox}
+\begin{NewMacroBox}{tkzDrawArea}{\oarg{命令选项}}
+可以使用所有有效\TIKZ{}选项。
+
+\begin{tabular}{lll}
+\toprule
+选项             & 默认值 & 含义                         \\
+\midrule
+\TOline{domain}{-5:5}{函数定义域}
+\TOline{with}{a}{指定函数}
+\TOline{color}{200}{颜色}
+\TOline{opacity} {无}{透明度}
+\TOline{style}{black}{线型}
+\end{tabular}
+\end{NewMacroBox}
+
+\subsection{对数函数}
+
+\begin{tkzexample}[]
+\begin{tikzpicture}[scale=2]
+ \tkzInit[xmin=0,xmax=3,xstep=1,
+          ymin=-2,ymax=2,ystep=1]
+ \tkzGrid
+ \tkzAxeXY
+ \tkzFct[domain= 0.4:3]{1./x}
+ \tkzDefPointByFct(1)
+ \tkzGetPoint{A}
+ \tkzDefPointByFct(2)
+ \tkzGetPoint{B}
+ \tkzLabelPoints[above right](A,B)
+ \tkzDrawArea[color=blue!30,
+              domain = 1:2]
+ \tkzFct[domain = 0.5:3]{log(x)}
+ \tkzDrawArea[color=red!30,
+              domain = 1:2]
+ \tkzPointShowCoord(A)
+ \tkzPointShowCoord(B)
+ \tkzDrawPoints(A,B)
+\end{tikzpicture}
+\end{tkzexample}
+
+\subsection{简单示例}
+\begin{tkzexample}[]
+  \begin{tikzpicture}[scale=1.75]
+   \tkzInit[xmin=0,xmax=800,xstep=100,
+            ymin=0,ymax=2000,ystep=400]
+   \tkzGrid
+   \tkzAxeXY
+   \tkzFct[domain = 0:800]{(1./90000)*\x*\x*\x-(1./100)*\x*\x+(113./36)*\x}
+   \tkzDefPoint(450,400){a}
+   \tkzDrawPoint(a)
+   \tkzDrawArea[color=orange!50, domain =0:450]
+   \tkzDrawArea[color=orange!80, domain =450:800]
+  \end{tikzpicture}
+\end{tkzexample}
+
+%<--------------------------------------------------------------------------->
+
+\newpage
+\subsection{填充样式}
+\begin{tkzexample}[]
+\begin{tikzpicture}[scale=2]
+  \tkzInit[xmin=-3,xmax=4,ymin=-2,ymax=4]
+  \tkzGrid(-3,-2)(4,4)
+  \tkzDrawXY
+  \tkzFct[domain = -2.15:3.2]{(2+\x)*exp(-\x)}
+  \tkzDrawArea[pattern=north west lines,domain =-2:2]
+  \tkzDrawTangentLine[draw,color=blue](0)
+  \tkzDrawTangentLine[draw,color=blue](-1)
+  \tkzDefPointByFct(2)  \tkzGetPoint{C}
+  \tkzDefPoint(2,0){B}
+  \tkzDrawPoints(B,C)  \tkzLabelPoints[above right](B,C)
+  \tkzRep
+\end{tikzpicture}
+\end{tkzexample}
+   %<--------------------------------------------------------------------------->
+
+\newpage
+% \subsection{Surface comprise entre  deux courbes \tkzcname{tkzDrawAreafg}}
+\subsection{\tkzcname{tkzDrawAreafg}命令：填充两条函数曲线之间的区域}
+
+\hypertarget{tdafg}{}
+% \begin{NewMacroBox}{tkzDrawAreafg}{\oarg{local options}}
+% Cette macro permet de mettre en évidence une surface délimitée par les courbes représentatives de deux fonctions. La courbe (a) doit être au-dessus de la courbe (b).
+%
+% \medskip
+% \begin{tabular}{lll}
+%  \toprule
+%  options             & défaut & explication    \\
+% \midrule
+% \TOline{between} {a and b}{référence des deux courbes}
+% \TOline{domain= min:max}{domain=-5:5}{Les options sont celles de \TIKZ.}
+% \TOline{opacity} {0.5}{transparence}
+% \bottomrule
+% \end{tabular}
+%
+% \emph{L'option \tkzname{pattern} de \TIKZ\ peut être utile !  }
+% \end{NewMacroBox}
+\begin{NewMacroBox}{tkzDrawAreafg}{\oarg{命令选项}}
+该命令用于填充两条函数曲线包围的区域，要求曲线(a)必须高于曲线(b)。
+
+\medskip
+\begin{tabular}{lll}
+ \toprule
+ 选项             & 默认值 & 说明    \\
+\midrule
+\TOline{between} {a and b}{曲线名称}
+\TOline{domain= min:max}{domain=-5:5}{定义域，是\TIKZ{}的选项}
+\TOline{opacity} {0.5}{透明度}
+\bottomrule
+\end{tabular}
+
+\emph{可以使用所有有效的\TIKZ{}填充样式\tkzname{pattern}选项。 }
+\end{NewMacroBox}
+%<--------------------------------------------------------------------------->
+
+% \subsection{Surface comprise entre deux courbes en couleur}
+\subsection{两条函数曲线之间的区域}
+% Par défaut, la surface définie est comprise entre les deux premières courbes.
+默认情况下，区域位于两条函数曲线之间。
+
+\begin{tkzexample}[vbox]
+ \begin{tikzpicture}[scale=1.5]
+   \tkzInit[xmax=5,ymax=5]
+   \tkzGrid  \tkzAxeXY
+   \tkzFct[domain = 0:5]{x}
+   \tkzFct[domain = 1:5]{log(x)}
+   \tkzDrawAreafg[color  = orange!50,domain = 1:5]
+ \end{tikzpicture}
+\end{tkzexample}
+
+%<--------------------------------------------------------------------------->
+\newpage
+\subsection{设置填充图案}
+
+\begin{tkzltxexample}[]
+\tkzDrawAreafg[between= a and b,pattern=north west lines,domain = 1:5]
+\end{tkzltxexample}
+
+\begin{center}
+  \begin{tkzexample}[vbox]
+  \begin{tikzpicture}[scale=.8]
+    \tkzInit[xmax=5,ymax=5]
+    \tkzGrid
+    \tkzAxeXY
+    \tkzFct[domain = 0:5]{x}
+    \tkzFct[domain = 1:5]{log(x)}
+    \tkzDrawAreafg[between= a and b,pattern=north west lines,domain = 1:5]
+  \end{tikzpicture}
+  \end{tkzexample}
+\end{center}
+
+%<--------------------------------------------------------------------------->
+% \subsection{Surface comprise entre deux courbes avec l'option \tkzname{between}}
+\subsection{\tkzname{between}选项}
+% Attention à l'ordre des références dans l'option \tkzname{between}. Seule la partie de la surface (b) est au-dessus de (a) est représentée.
+注意，\tkzname{between}的引用顺序，在此表示函数曲线(b)高于函数曲线(a)。
+
+\begin{tkzexample}[latex=7cm]
+\begin{tikzpicture}[scale=1.25]
+ \tkzInit[ymin=-1,xmax=5,ymax=3]
+ \tkzGrid
+ \tkzAxeXY
+ \tkzFct[domain = 0.5:5]{1/x}% courbe a
+ \tkzFct[domain = 1:5]{log(x)}% courbe b
+ \tkzDrawAreafg[between=b and a,
+            color=magenta!50,
+            domain = 1:4]
+\end{tikzpicture}
+\end{tkzexample}
+
+%<--------------------------------------------------------------------------->
+\newpage
+% \subsection{Surface comprise entre deux courbes : courbes de Lorentz}
+\subsection{两条Lorentz函数曲线之间的区域}
+% Ici aussi, attention à l'ordre des références dans l'option \tkzname{between}.
+在此，也要注意\tkzname{between}选项中的函数曲线引用顺序。
+
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}[scale=1.25]
+  \tkzInit[xmax=1,ymax=1,xstep=0.1,ystep=0.1]
+  \tkzGrid
+  \tkzAxeXY
+  \tkzFct[color   = red,domain = 0:1]{(exp(\x)-1)/(exp(1)-1)}
+  \tkzFct[color   = blue,domain = 0:1]{\x*\x*\x}
+  \tkzFct[color  = green,domain = 0:1]{\x}
+  \tkzDrawAreafg[between = c and b,color=purple!40,domain = 0:1]
+  \tkzDrawAreafg[between = c and a,color=gray!60,domain = 0:1]
+\end{tikzpicture}
+\end{tkzexample}
+
+%<--------------------------------------------------------------------------->
+% \subsection{Mélange de style}
+\subsection{混合样式}
+
+\begin{tkzexample}[]
+\begin{tikzpicture}[scale=2.5]
+   \tkzInit[xmin=-1,xmax=4,ymin=0,ymax=5]
+   \tkzGrid
+   \tkzAxeXY
+   \tkzFct[domain = -.5:4]{ 4*x-x**2+4/(x**2+1)**2}
+   \tkzFct[domain = -.5:4]{x-1+4/(x**2+1)**2}
+   \tkzDrawAreafg[color=green,domain = 1:4]
+   \tkzDrawAreafg[pattern=north west lines,domain = -.5:1]
+   \tkzRep
+   \tkzText(2.5,4.5){$C_f$}
+   \tkzText(2.5,1){$C_g$}
+\end{tikzpicture}%
+\end{tkzexample}
+
+\newpage  %<--------------------------------------------------------------------------->
+% \subsection{Courbes de niveaux}
+% Le code est intéressant pour la définition des fonctions constantes  aux lignes 10 et 11.
+\subsection{水平曲线}
+注意代码第10行和第11行的常量函数定义。
+
+\begin{tkzexample}[num]
+\begin{tikzpicture}[scale=.75]
+ \tkzInit[xmax=20,ymax=12]
+ \tkzGrid[color=orange,sub](0,0)(20,12)
+ \tkzAxeXY
+ \tkzFct[samples=400,domain =0:8]{(32-4*x)**(0.5)}   % a
+ \tkzFct[samples=400,domain =0:18]{(72-4*x)**(0.5)}  % b
+ \tkzFct[samples=400,domain =0:20]{(112-4*x)**(0.5)} % c
+ \tkzFct[samples=400,domain =2:20]{(152-4*x)**(0.5)} % d
+ \tkzFct[samples=400,domain =12:20]{(192-4*x)**(0.5)}% e
+ \def\tkzFctgnuf{0} % f
+ \def\tkzFctgnug{12}% g
+ \tkzDrawAreafg[between= b and a,color=gray!80,domain = 0:8]
+ \tkzDrawAreafg[between= b and f,color=gray!80,domain = 8:18]
+ \tkzDrawAreafg[between= d and c,color=gray!50,domain = 2:20]
+ \tkzDrawAreafg[between= g and c,color=gray!50,domain = 0:2]
+ \tkzDrawAreafg[between= g and e,color=gray!20,domain =12:20]
+\end{tikzpicture}%
+\end{tkzexample}
+
+\end{document}
+\endinput

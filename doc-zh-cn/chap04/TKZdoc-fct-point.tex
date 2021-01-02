@@ -1,0 +1,211 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+% \section{Placer un point sur une courbe \tkzcname{tkzDefPointByFct}} \hypertarget{tptfct}{}
+\section{\tkzcname{tkzDefPointByFct}命令：通过函数定义点} \hypertarget{tptfct}{}
+
+% \begin{NewMacroBox}{tkzDefPointByFct}{\parg{$decimal number$}}
+% \emph{Cette macro permet de calculer l'image par la fonction définie précédemment, d'un nombre décimal.}
+%
+% \medskip
+% \begin{tabular}{lll}
+%  \toprule
+%  argument             & exemple & explication                         \\
+%  \midrule
+%  \TAline{decimal number}{\tkzcname{tkzDefPointByFct(0)}}{définit un point d'abscisse $0$}
+%  \bottomrule
+% \end{tabular}
+%
+% \begin{tabular}{lll}
+%  option             & defaut & explication                         \\
+%  \midrule
+%  \TOline{draw}{false}{permet de tracer le point avec le style courant}
+%  \TOline{with}{a}{permet de choisir la fonction}
+%  \TOline{ref}{empty}{permet de donner une référence au point}
+%  \bottomrule
+% \end{tabular}
+%
+% \emph{C'est donc la dernière fonction définie qui est utilisée. Si une autre fonction, est utilisée alors il faut utiliser l'ancienne macro \tkzcname{tkzFctPt}. Le point est défini sous un nom générique \tkzname{tkzPointResult} mais non tracé. Afin de le tracer il faut utiliser la macro \tkzcname{tkzDrawPoint}.}
+% \end{NewMacroBox}
+\begin{NewMacroBox}{tkzDefPointByFct}{\parg{$decimal number$}}
+\emph{
+该命令允许使用十进制数表示的$x$坐标，通过函数计算，定义函数图像的一个点。
+}
+
+\medskip
+\begin{tabular}{lll}
+ \toprule
+ 参数             & 样例 & 说明                         \\
+ \midrule
+ \TAline{decimal number}{\tkzcname{tkzDefPointByFct(0)}}{设置横坐标为$0$的函数上的点}
+ \bottomrule
+\end{tabular}
+
+\begin{tabular}{lll}
+ 选项             & 默认值 & 说明                         \\
+ \midrule
+ \TOline{draw}{false}{允许使用当前样式绘制点}
+ \TOline{with}{a}{用指定的函数定义点，函数按自然序用字母编号}
+ \TOline{ref}{empty}{设置引用名称}
+ \bottomrule
+\end{tabular}
+
+\emph{
+该命令使用最近使用的函数定义点，如果需要使用别的函数，
+则需要使用旧的\tkzcname{tkzFctPt}命令。
+可以通过\tkzname{tkzPointResult}命令使用定义的点，
+但如果需要绘制该点，则需要使用\tkzcname{tkzDrawPoint}。
+}
+\end{NewMacroBox}
+
+% \subsection{Exemple avec \tkzcname{tkzGetPoint}}
+\subsection{\tkzcname{tkzGetPoint}命令示例}
+% Cela permet de référencer le point créé par \tkzcname{tkzDefPointByFct}.
+该命令可以引用\tkzcname{tkzDefPointByFct}命令定义的点。
+
+\begin{center}
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}[scale=1.25]
+  \tkzInit[xmin=-2,xmax=2,xstep=1,
+           ymin=-8,ymax=24,ystep=8]
+  \tkzGrid  \tkzAxeXY
+  \tkzFct[domain =-1.5:1]{3.0-1.3125*x**5-2.5*x**3}
+  \tkzDefPointByFct(.5)  \tkzGetPoint{A}\tkzDrawPoint(A)
+  \tkzLabelPoint[above right](A){$A_0$}
+\end{tikzpicture}
+\end{tkzexample}
+\end{center}
+
+
+\newpage
+% \subsection{Exemple avec \tkzcname{tkzGetPoint} et \tkzname{tkzPointResult}}
+% Il est possible de ne pas référencer le point et d'utiliser la référence générique.
+\subsection{\tkzcname{tkzGetPoint}和\tkzname{tkzPointResult}命令示例}
+可以直接使用一个定义过点，而不需要保存并命令该点(后续引用)。
+
+\begin{tkzexample}[latex=7cm,small]
+\begin{tikzpicture}[scale=1.25]
+  \tkzInit[xmin=-2,xmax=2,xstep=1,
+           ymin=-8,ymax=24,ystep=8]
+  \tkzGrid
+  \tkzAxeXY
+  \tkzFct[domain =-1.5:1]{3.0-1.3125*x**5-2.5*x**3}
+  \tkzDefPointByFct(.5)
+  \tkzDrawPoint(tkzPointResult)
+  % ou bien \tkzDefPointByFct[draw](.5)
+\end{tikzpicture}
+\end{tkzexample}
+
+% \subsection{Options \tkzname{draw} et \tkzname{ref}}
+\subsection{\tkzname{draw}和\tkzname{ref}选项}
+% Cela permet de tracer un point directement avec les options usuelles donc sans possibilités de personnaliser et d'attribuer une référence à ce point.
+\tkzname{draw}允许直接绘制定义的点，\tkzname{ref}允许为定义的点命名，
+并在后续代码中通过该名称引用该点。
+
+\begin{tkzexample}[latex=7cm,small]
+\begin{tikzpicture}[scale=1.25]
+  \tkzInit[xmin=-2,xmax=2,xstep=1,
+           ymin=-8,ymax=24,ystep=8]
+  \tkzGrid
+  \tkzAxeXY
+  \tkzFct[domain =-1.5:1]{3.0-1.3125*x**5-2.5*x**3}
+  \tkzDefPointByFct[draw,ref=A](.5)
+  \tkzLabelPoint[above right](A){$a$}
+\end{tikzpicture}
+\end{tkzexample}
+
+\newpage
+% \subsection{Placer des points sans courbe}
+\subsection{仅绘制函数曲线上的点}
+% Attention, ceci est délicat. Il suffit de définir la macro \tkzcname{tkzFctLast} qui est la dernière expression traduite avec la syntaxe de \tkzname{fp.sty}. Les points sont donc déterminer avec \tkzname{fp.sty}.
+注意，需提前定义表示函数的\tkzcname{tkzFctLast}全局宏(\tkzcname{global}\tkzcname{edef})。
+因为这一操作是通过\tkzname{fp.sty}宏包实现的，因此，该宏中的函数定义需要使用\tkzname{fp.sty}的语法。
+
+\begin{tkzexample}[]
+\begin{tikzpicture}[xscale=3,yscale=2]
+  \tkzInit[xmin=-2,xmax=2,xstep=1,
+           ymin=-8,ymax=24,ystep=8]
+  \tkzGrid
+  \tkzAxeXY
+  \global\edef\tkzFctLast{3.0-1.3125*x^5-2.5*x^3}
+  \foreach \va in {-1.5,-1.4,...,1}{%
+      \tkzDefPointByFct[draw](\va)}
+\end{tikzpicture}
+\end{tkzexample}
+
+\newpage\null
+\subsection{与实际坐标无关的点}
+
+% Cette fois, le domaine s'étend de 0 à 800, les valeurs prises par la fonction de $0$ à $\numprint{2000}$. \tkzname{xstep=100} donc il faut utliser |\x| à la place de $x$. Une petite astuce au niveau de gnuplot, 1. et 113. permettent d'obtenir une division dans les décimaux sinon la division se fait dans les entiers.
+在此，将函数定义域设置为$0$至$\numprint{800}$，值域设置为$0$ à $\numprint{2000}$。
+由于\tkzname{xstep=100}，所以需要在函数定义中用|\x|代替$x$。
+注意用$1.$和$113.$带小数点的数实现浮点数运算。
+
+\begin{tkzexample}[]
+\begin{tikzpicture}[scale=1.6]
+  \tkzInit[xmin  = 0,  xmax  = 800,
+           ymin  = 0,  ymax  = 2000,
+           xstep = 100,ystep = 400]
+  \tkzGrid
+  \tkzAxeXY
+  \tkzFct[color  = blue,
+          domain = 0:800]%
+        {(1./90000)*\x*\x*\x-(1./100)*\x*\x+(113./36)*\x}
+  \foreach \va in {0,450,800}{%
+     \tkzDefPointByFct[draw](\va)}
+\end{tikzpicture}
+\end{tkzexample}
+
+\newpage
+% \subsection{Placer des points avec deux fonctions}
+\subsection{设置点的样式}
+
+\medskip
+% Revoir \tkzcname{tkzSetUpPoint}  et \tkzcname{tkzText} du module \tkzname{tkz-base.sty}
+请参阅\tkzname{tkz-base.sty}宏包的\tkzcname{tkzSetUpPoint}命令和\tkzcname{tkzText}命令。
+
+
+\begin{tkzexample}[code only]
+\begin{tikzpicture}[scale=4]
+  \tkzInit[xmax=3,ymax=2]
+  \tkzAxeX
+  \tkzAxeY
+  \tkzGrid(0,0)(3,2)
+  \tkzFct[color = red,domain = 1./3:3]{0.125*(3*x-1)+0.375*(3*x-1)/(x*x)}
+  \tkzFct[color = green,domain = 1./3:3]{0.125*(3*x-1)}
+  \tkzSetUpPoint[shape=circle,  size = 4, color=black, fill=lightgray]
+  \tkzDefPointByFct[draw,with = a](1)
+  \tkzDefPointByFct[draw,with = a](2)
+  \tkzDefPointByFct[draw,with = a](3)
+  \tkzDefPointByFct[draw,with = b](3)
+  \tkzDefPointByFct[draw,with = b](1/3)
+  \tkzText[draw,color= red,fill=red!20](1,1.5) %
+          {$f(x)=\frac{1}{8}(3x-1)+\frac{3}{8}%
+           \left(\frac{3x-1}{x^2}\right)$}
+  \tkzText[draw,color= green!50!black,fill=green!20]%
+               (2,0.3){$g(x)=\frac{1}{8}(3x-1)$}
+\end{tikzpicture}
+\end{tkzexample}
+
+\begin{tikzpicture}[scale=4]
+  \tkzInit[xmax=3,ymax=2]
+  \tkzAxeX
+  \tkzAxeY
+  \tkzGrid(0,0)(3,2)
+  \tkzFct[color = red,domain = 1./3:3]{0.125*(3*x-1)+0.375*(3*x-1)/(x*x)}
+  \tkzFct[color = green,domain = 1./3:3]{0.125*(3*x-1)}
+  \tkzSetUpPoint[shape=circle,  size = 4, color=black, fill=lightgray]
+  \tkzDefPointByFct[draw,with = a](1)
+  \tkzDefPointByFct[draw,with = a](2)
+  \tkzDefPointByFct[draw,with = a](3)
+  \tkzDefPointByFct[draw,with = b](3)
+  \tkzDefPointByFct[draw,with = b](1/3)
+  \tkzText[draw,color= red,fill=red!20](1,1.5) %
+          {$f(x)=\frac{1}{8}(3x-1)+\frac{3}{8}%
+           \left(\frac{3x-1}{x^2}\right)$}
+  \tkzText[draw,color= green!50!black,fill=green!20]%
+               (2,0.3){$g(x)=\frac{1}{8}(3x-1)$}
+\end{tikzpicture}
+
+%<--------------------------------------------------------------------------->
+\end{document}
+\endinput

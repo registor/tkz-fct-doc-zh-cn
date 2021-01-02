@@ -1,0 +1,46 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+% \section{Labels}
+\section{标注}
+
+% Ce qui est souhaitable, c'est de pouvoir nommer les courbes. Prenons comme exemple, la fonction $f$ définie par :
+可以在绘制函数图像后，为函数图像添加标注，如函数$f$定义为：
+
+\[
+   x>0\ \text{et}\ f(x)=\dfrac{x^2+1}{x^3}
+\]
+
+% Il est assez aisé de mettre un titre en utilisant la macro \tkzcname{tkzText} du package \tkzname{tkz-base}. Les coordonnées utilisées font référence aux unités des axes du repère. Pour placer un texte le long de la courbe, le plus simple est choisir un point de la courbe, puis d'utiliser celui-ci pour afficher le texte.
+可以使用\tkzname{tkz-base}宏包提供的\tkzcname{tkzText}为函数添加标注，
+在添加标注时，可以为标注直接指定坐标。
+如果需要沿曲线添加标注，则最简单的方法是通过函数曲线定义一点，然后用该点为标注定位。
+
+\begin{tkzltxexample}[num]
+  \tkzDefPointByFct(3)
+  \tkzText[above right](tkzPointResult){${\mathcal{C}}_f$}
+\end{tkzltxexample}
+
+% La première ligne détermine un point de la courbe. Ce point est rangé dans \tkzname{tkzPointResult}. Il suffit d'utiliser \tkzcname{tkzText} avec ce point comme argument comme le montre la seconde ligne. Les options de \TIKZ\ permettent d'affiner le résultat.
+第1句代码使用函数定义了函数上的一个点，可以使用\tkzname{tkzPointResult}得到该点。
+第2句代码使用定义的点为标注定位，当然，\TIKZ{}能够对结果进行优化。
+
+\subsection{添加标注示例}
+
+\begin{center}
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}
+  \tkzInit[xmin=0,xmax=10,
+          ymin=-0.5,ymax=1.2,ystep=0.2]
+  \tkzGrid
+  \tkzAxeXY
+  \tkzClip
+  \tkzFct[thick,color=red,domain=0.55:10]{(\x*\x+\x-1)/(\x**3)}
+  \tkzText(3,-0.3){\textbf{曲线} $\mathbf{f}$}
+  \tkzDefPointByFct(3)
+  \tkzText[above right,text=red](tkzPointResult){${\mathcal{C}}_f$}
+\end{tikzpicture}
+\end{tkzexample}
+\end{center}
+
+%<--------------------------------------------------------------------------->
+\end{document}

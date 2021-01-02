@@ -1,0 +1,76 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+% \section{Utilisation  \tkzname{pgfmath} et de \tkzname{fp.sty} }
+\section{\tkzname{pgfmath}和\tkzname{fp.sty}工具}
+%--------------------------------------------------------------------------->
+% \subsection{\tkzname{pgfmath}}
+\subsection{\tkzname{pgfmath}}
+
+% On peut faire maintenant beaucoup de tracés sans Gnuplot, voici à titre d'exemple et d'après une idée d'Herbert Voss (le membre le plus actif de la communauté Pstricks) un exemple de courbes obtenues avec seulement Tikz.
+即便是没有Gnuplot，也可以绘制图形，下面是\tkzname{Herbert Voss}(Pstricks社区最活跃的成员)仅使用\TIKZ{}绘图的一种方法。
+
+\begin{center}
+\begin{tkzexample}[]
+\begin{tikzpicture}
+  \def\Asmall{0.7 } \def\Abig{3 } \def\B{20}%Herbert Voss
+  \path[fill=blue!40!black,domain=-pi:pi,samples=500,smooth,variable=\t]%
+          plot({\Abig*cos(\t r)+\Asmall*cos(\B*\t r)},%
+               {0.5*\Abig*sin(\t r)+0.5*\Asmall*sin(\B*\t r)});
+  \def\Asmall{0.7 } \def\Abig{3 } \def\B{10}
+  \path[shift={(1,1)},fill=blue!40!black,%
+        domain=-pi:pi,samples=500,smooth,variable=\t]%
+        plot({\Abig*cos(\t r)+\Asmall*cos(\B*\t r)},%
+             {0.5*\Abig*sin(\t r)+0.5*\Asmall*sin(\B*\t r)});
+\end{tikzpicture}
+\end{tkzexample}
+\end{center}
+
+% \subsection{\tkzname{fp.sty}}
+\subsection{\tkzname{fp.sty}}
+
+% Le principal problème  de \tkzname{fp.sty} se produit lors de l'évaluation par exemple de $(-4)^2$ ce qui peut se traduire avec fp par~:
+\tkzname{fp.sty}的主要问题是可能会造成计算错误，如：$(-4)^2$的计算，
+% 在代码中，可以先计算出该值，再在后续代码中使用该计算结果。
+
+\begin{tkzltxexample}[]
+\begin{tikzpicture}
+   \FPeval\result{(-4)^2}
+\end{tikzpicture}
+\end{tkzltxexample}
+
+% ce qui donne une erreur car fp utilise les logarithmes pour faire cette évaluation. \tkzname{tkz-fct.sty} modifie la macro \tkzcname{FP@pow} pour éviter cette erreur
+由于使用对数的方式进行计算，因此，这可能会造成错误。
+为此，\tkzname{tkz-fct.sty}宏包通过修改\tkzname{FP@pow}宏以避免这个错误。
+
+%  Pour calculer les pentes des tangentes et pour placer des points sur les courbes, mon module traduit l'expression donnée pour Gnuplot et la stocke dans une commande \tkzcname{tkzFcta}, pour être utilisée ensuite avec les macros \tkzcname{tkzDefPointByFct}\ et \tkzcname{tkzDrawTangentLine}.
+当需要计算切线的斜率时并在函数曲线上放置点时，该宏包通过转换表达式为\tkzname{Gnuplot}提供数据，
+并将结果保存在\tkzname{tkzFcta}宏中，
+在后续代码中，可以使用\tkzcname{tkzDefPointByFct} 和 \tkzcname{tkzDrawTangentLine}命令使用这些数据。
+
+% mais si vous voulez placer un point de ce graphe ayant pour abscisse $x=2$, il est alors préférable de choisir la première méthode.
+不过，如果需要在该图中放置一个$x=2$的点，建议使用第一种方法比较合理。
+
+% Sinon pour une fonction polynômiale, il sera nécessaire pour utiliser les macros relatives aux images et aux tangentes de mettre le polynôme sous la forme d'Horner.
+% Ainsi avec \tkzcname{tkzFct}, l'argument $x^4-2x^3+4x-5$ peut être écrit : |-5+x*(0.5+4*x*(x*(-2+x*1)))|.
+否则，对于多项式函数，在使用与图像切线相关的命令时，需要将多项式表示为\tkzname{Horner}的形式。
+因此，在使用\tkzcname{tkzFct}命令时，需要将$x^4-2x^3+4x-5$改写成：
+|-5+x*(0.5+4*x*(x*(-2+x*1)))|.\
+
+% Voici ce qu'il faut donc faire :
+因此，需要做的是：
+
+\begin{center}
+\begin{tkzexample}[]
+\begin{tikzpicture}
+ \tkzInit[xmin=-0.2,xmax=0.2,xstep=.1,
+          ymin=-12,ymax=6,ystep=2]
+ \tkzGrid
+ \tkzAxeXY
+ \tkzFct[domain = -.1:.2]%
+ {-5+x*(0.5+4*x*(x*(-2+x*1)))}
+\end{tikzpicture}
+\end{tkzexample}
+\end{center}
+
+\end{document}
+\endinput

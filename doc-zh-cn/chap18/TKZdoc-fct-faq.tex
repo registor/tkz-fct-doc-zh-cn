@@ -1,0 +1,118 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+% \section{Quelques remarques}
+\section{注意事项}
+
+\begin{enumerate}
+% \item Modification avec les anciennes versions~:
+\item 旧版本修订：
+  \begin{itemize}
+   % \item \tkzcname{tkzTan} est devenu \tkzcname{tkzDrawTangentLine}
+   \item 将\tkzcname{tkzTan}命令改为\tkzcname{tkzDrawTangentLine}命令
+   % \item Désormais le domaine est donné comme avec \TIKZ\ et ce n'est plus
+   %  \parg{$x_a..x_b$}
+   \item 现在，在\TIKZ{}中使用定义域，而不再使用\parg{$x_a..x_b$}的形式
+   % \item \tkzcname{tkzFctPt} est devenu \tkzcname{tkzDefPointByFct}
+   \item 将\tkzcname{tkzFctPt}命令改为\tkzcname{tkzDefPointByFct}命令
+  \end{itemize}
+
+% \item  Quand \tkzname{xstep} est différent de 1, la variable doit être \tkzcname{x}.
+\item 当\tkzname{xstep}不为1时，必须在函数表达式中使用\tkzcname{x}.
+% \item Quand une fonction est passée en argument à la macro \tkzcname{tkzFct}, elle est stockée avec la syntaxe de \tkzname{gnuplot} dans la macro \tkzcname{tkzFctgnua}. \tkzname{tkzFctgnu} est un préfixe, « a » est la référence associée à la fonction, la fonction suivante dans le même environnement \tkzname{tikzpicture} sera référencée « b » et ainsi de suite...
+\item 当函数表达式作为一个参数传递给\tkzcname{tkzFct}命令时，
+	它与\tkzname{tkzFctgnua}命令中的\tkzname{gnuplot}同时存储。
+	\tkzcname{tkzFctgnu}命令使用前缀\enquote{a}实现对该函数的引用，
+	在同一\tkzname{tikzpicture}环境中，也可以使用\enquote{b}\dots{}这样的方式按顺序对后续函数实现引用。
+
+% Elle est aussi stockée avec la syntaxe de \tkzname{fp.sty} dans la macro  \tkzcname{tkzFcta} avec le préfixe \tkzname{tkzFcta}.
+	同时，还按\tkzname{fp.sty}语法在将前缀\tkzname{tkzFcta}存储在命令\tkzcname{tkzFcta}中。
+
+% La dernière macro utilisée est également sauvegardée sous les deux syntaxes  avec \tkzcname{tkzFctgnuLast}   et \tkzcname{tkzFctLast}.
+最后，所使用的宏将按\tkzcname{tkzFctgnuLast}和\tkzcname{tkzFctLast}两种语法保存。
+
+% \item Attention dans \tkzname{gnuplot} un quotient doit être entré sous la forme 1./3, car 1/3 donne le quotient d'une division euclidienne (ici 0).
+\item 注意\tkzname{gnuplot}的除法必须用小数点按1./3的形式计算，1/3将会按整数的方式计算，其结果为0
+\item gnuplot的问题：
+  \begin{itemize}
+   \item 如果未能创建xxx.table文件，可能的原因有：
+     \begin{itemize}
+     % \item  soit que \TEX\ ne trouve pas \tkzname{gnuplot}, c'est en général un problème de « PATH »,
+		 \item  \TEX{}找不到\tkzname{gnuplot}，这多是由\enquote{PATH}环境变量设置错误引起的。
+     % \item  soit \TEX\  n'autorise pas le lancement de \tkzname{gnuplot} alors c'est que l'option \tkzname{shell-escape} n'est pas autorisé.
+		 \item  \TEX{}无法启动\tkzname{gnuplot}，这主要是因为未使用\tkzname{shell-escape}编译参数引起的。
+    \end{itemize}
+
+还有一种可能是xxx.gnuplot文件错误，只要用文本编辑器打开它，就可以编辑其\tkzname{gnuplot}命令。
+值得注意的是：\tkzname{gnuplot}在4.2版后，语法发生了变化(4.4或4.5后会推出新讲法)，
+使用旧版本的创建表格命令是：\tkzname{set table}。
+
+
+   % \item $\pi$ est, avec \tkzname{gnuplot}, défini par \tkzname{pi}
+   % \item  $\pi$ est, avec \tkzname{fp.sty} défini par \tkzcname{FPpi}.
+   % \item (set) samples =2 est suffisant pour tracer une droite.
+   \item 在\tkzname{gnuplot}定义了\tkzname{pi}表示$\pi$
+   \item 在\tkzname{fp.sty}定义了\tkzcname{FPpi}表示$\pi$。
+   \item 对于直线，设置采样点数为2(samples=2)则足以绘制该直线。
+  \end{itemize}
+
+%  \item La puissance $a^b$ est notée $a \wedge b$ avec fp et pgfmath mais $a**b$ avec gnuplot.
+ \item 幂运算$a^b$在fp和pgfmath中表示为$a \wedge b$，
+	 在gnuplot中表示为$a**b$。
+
+%  \item \tkzname{tkz-fct} modife FP@pow  (code modifié de Christian Tellechea 2009) afin d'autoriser les puissances entières de nombres  négatifs.
+ \item \tkzname{tkz-fct}修改了FP@pow(Christian Tellechea 2009的修订代码)，从而允许计算负数的整次幂。
+
+
+% \item ({1/exp(1)}) est correct mais (1/exp(1)) donne une erreur
+\item (\{1/exp(1)\})是正确的，但(1/exp(1))是错误的
+\end{enumerate}
+
+% \subsection{Fonctions de \tkzname{gnuplot}}
+\subsection{\tkzname{gnuplot}的函数}
+
+\begin{tabular}{lll}
+\toprule
+Gnuplot&fp&Description \\
++  & +  &  addition\\
+-  & -   &  soustraction\\
+*  & *  &  multiplication\\
+/  & /  &  division\\
+**  & \upp  &  exponentiation\\
+\%  & absente & modulo \\
+pi  &  pi  &  constante 3.1415   \\
+abs(x) & abs  & Valeur absolue                              \\
+cos(x) & cos &  Arc -cosinus                                \\
+sin(x) & sin &  Arc -cosinus                                \\
+tan(x) & tan &  Arc -cosinus                                \\
+acos(x) & arccos &  Arc -cosinus                            \\
+asin(x) &  arcsin &  Arc-sinus                              \\
+atan(x) &  arctan &  Arc-tangente                           \\
+atan2(y,x) & absente & Arc-tangente                  \\
+\midrule
+cosh(x) & absente & Cosinus hyperbolique                       \\
+sinh(x) & absente & Sinus hyperbolique                         \\
+acosh(x) & absente & Arc-cosinus hyperbolique                  \\
+asinh(x) & absente & Arc-sinus hyperbolique                  \\
+atanh(x) & absente & Arc-tangente hyperbolique                 \\
+\midrule
+besj0(x) & absente  & Bessel j0                       \\
+besj1(x) & absente & Bessel j1                       \\
+besy0(x) & absente & Bessel y0                       \\
+besy1(x) & absente & Bessel y1                       \\
+\midrule
+ceil(x) & absente &  Le plus petit entier plus grand que       \\
+floor(x) & absente &  Plus grand entier plus petit que         \\
+absente & trunc(x,n) &  troncature $n$ nombre de décimales        \\
+absente & round(x,n) &  arrondi $n$ nombre de décimales         \\
+exp(x) & exp  & Exponentielle                               \\
+log(x) & ln &  Logarithme népérien (base e)                 \\
+log10(x) & absente & Logarithme base 10                      \\
+norm(x) & absente & Distribution normale                       \\
+rand(x) & random &  Générateur de nombre pseudo-aléatoire     \\
+sgn(x) & absente & Signe                                       \\
+sqrt(x) & absente &  Racine carrée                             \\
+tanh(x) & absente & Tangente hyperbolique                      \\
+\bottomrule
+\end{tabular}
+\end{document}
+\endinput

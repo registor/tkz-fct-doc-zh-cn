@@ -1,0 +1,375 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+% \section{Utilisation de Gnuplot}
+\section{使用Gnuplot绘图}
+%–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––>
+% \subsection{Mécanisme d'interaction entre \TIKZ\ et \tkzname{Gnuplot}}
+\subsection{\TIKZ{}与\tkzname{Gnuplot}交互}
+
+% \TEX\  est un système logiciel de composition de documents ( text processing programm ). Il permet bien sûr de calculer, mais avec des moyens limités. \TIKZ\ est ainsi limité par \TEX\ pour effectuer des calculs. Pour rappel ±16383.99999 pt est l'intervalle dans lequel \TEX\ stocke ses valeurs. Sachant que 1 cm est égal à 28.45274 pt, on s'aperçoit que \TEX\ ne  peut traiter que des dimensions inférieures à 5,75 mètres environ.
+\TEX{}本质上是一个文本处理软件系统，虽然可以用\TEX{}进行计算，但其方法有限。
+同样，受\TEX{}制约，\TIKZ{}的计算功能也不够完善。
+由于\TEX{}的尺寸范围=±16383.99999pt，而1cm=28.45274pt，
+所以\TEX{}只能处理小于5.75米范围内的数据。
+看起来，这已经足够大了，
+但在一系列的计算中，却很容易超出这一限制。
+
+\bigskip
+ \tkzActivOff
+  \newcommand{\drawpage}[4]{%
+  \begin{scope}[xshift=#1, yshift=#2,font=\footnotesize]
+    \filldraw[fill=white!75!#4,draw=#4, very thin]%
+   (0,0) -- (4.2,0) -- (4.2,4.85) --(3.21,5.84)-- (0,5.84) -- cycle;
+   \fill[fill=#4,shade,top color=#4,bottom color=#4!40]%
+       (3.21,5.84) -- ++(0,-0.99) -- ++(0.99,0) -- cycle;
+    \path (2.1,2.97) node{#3};
+  \end{scope}
+}
+%
+% \begin{center}
+% \begin{tikzpicture}[>=triangle 45,scale=.75]
+% \drawpage{0cm}{0cm}{\texttt\blue\begin{minipage}{2cm}
+% sample.tex
+%
+% with
+%
+% \tkzcname{draw plot[id=fct] function{---.};}
+% \end{minipage}}{blue}
+% \drawpage{12cm}{0cm}{\texttt \red sample.fct.gnuplot}{red}
+% \drawpage{12cm}{-14cm}{\texttt\red sample.fct.table}{red}
+% \drawpage{0cm}{-14cm}{\texttt\blue\begin{minipage}{2cm}
+% sample.pdf
+%
+% \bigskip
+% \shorthandoff{:}
+%  \begin{tikzpicture}[domain=-1.5:.8]
+%   \draw plot[id=f1,samples=200] function{x*x};
+%  \end{tikzpicture}
+% end{minipage}}{blue}
+%
+% \path (8.05,2.9) node(A)
+%      [diamond,%
+%       draw,color   = black,
+%       fill         = red!60,%
+%       text         = black,%
+%       minimum size = 3 cm,%
+%       font         = \normalsize]
+%      {{\texttt \tikzname-\TEX}};
+%   \path (14.1,-4.08) node(B)
+%      [diamond,%
+%       draw,color=black,fill=green!60,%
+%       text = black,%
+%       minimum size = 3 cm,%
+%       font         = \normalsize]
+%      {{\texttt gnuplot}};
+%   \path (8.05,-11.1) node(C)
+%      [diamond,%
+%       draw,color   = black,
+%       fill         = red!60,%
+%       text         = black,%
+%       minimum size = 3 cm,%
+%       font         = \normalsize]
+%      {{\texttt \tikzname-\TEX}};
+%   \draw[->] (4.2,2.9) -- (A.west);
+%   \draw[->] (A.east) -- (12,2.9);
+%   \draw[->] (14.1,0) -- (B.north);
+%   \draw[->] (B.south) -- (14.1,-8.18);
+%   \draw[->] (12 ,-11.1)--(C.east);
+%   \draw[->] (C.west)--(4.2,-11.1);
+%   \draw[->,magenta] (4.2,2.9) to [ out =-80,in=260] node[below,pos=.5]{étape 1} (12,2.9);
+%   \draw[->,magenta] (14.1,0) to [ out =200,in=160] node[left,pos=.5]{étape 2} (14.1,-8.18);
+%   \draw[->,magenta] (12 ,-11.1) to [ out =110,in=70] node[above,pos=.5]{étape 3} (4.2,-11.1);
+%   \end{tikzpicture}
+% \end{center}
+\begin{center}
+\begin{tikzpicture}[>=triangle 45,scale=.75]
+\drawpage{0cm}{0cm}{\texttt\blue\begin{minipage}{2cm}
+带有
+
+\tkzcname{draw plot[id=fct] function{---.};}
+的\enquote{.tex}文件，如
+
+sample.tex
+\end{minipage}}{blue}
+\drawpage{12cm}{0cm}{\texttt \red sample.fct.gnuplot}{red}
+\drawpage{12cm}{-14cm}{\texttt\red sample.fct.table}{red}
+\drawpage{0cm}{-14cm}{\texttt\blue\begin{minipage}{2cm}
+sample.pdf
+
+\bigskip
+% \shorthandoff{:}
+ \begin{tikzpicture}[domain=-1.5:.8]
+  \draw plot[id=f1,samples=200] function{x*x};
+ \end{tikzpicture}
+\end{minipage}}{blue}
+
+\path (8.05,2.9) node(A)
+     [diamond,%
+      draw,color   = black,
+      fill         = red!60,%
+      text         = black,%
+      minimum size = 3 cm,%
+      font         = \normalsize]
+     {{\texttt \tikzname-\TEX}};
+  \path (14.1,-4.08) node(B)
+     [diamond,%
+      draw,color=black,fill=green!60,%
+      text = black,%
+      minimum size = 3 cm,%
+      font         = \normalsize]
+     {{\texttt gnuplot}};
+  \path (8.05,-11.1) node(C)
+     [diamond,%
+      draw,color   = black,
+      fill         = red!60,%
+      text         = black,%
+      minimum size = 3 cm,%
+      font         = \normalsize]
+     {{\texttt \tikzname-\TEX}};
+  \draw[->] (4.2,2.9) -- (A.west);
+  \draw[->] (A.east) -- (12,2.9);
+  \draw[->] (14.1,0) -- (B.north);
+  \draw[->] (B.south) -- (14.1,-8.18);
+  \draw[->] (12 ,-11.1)--(C.east);
+  \draw[->] (C.west)--(4.2,-11.1);
+  \draw[->,magenta] (4.2,2.9) to [ out =-80,in=260] node[below,pos=.5]{第1步} (12,2.9);
+  \draw[->,magenta] (14.1,0) to [ out =200,in=160] node[left,pos=.5]{第2步} (14.1,-8.18);
+  \draw[->,magenta] (12 ,-11.1) to [ out =110,in=70] node[above,pos=.5]{第3步} (4.2,-11.1);
+  \end{tikzpicture}
+\end{center}
+
+\newpage
+
+% Pour tracer des courbes en 2D en contournant ces problèmes, un moyen simple offert par \TIKZ, est d'utiliser \tkzname{gnuplot}.
+\TIKZ{}通过简单地采用\tkzname{gnuplot}工具，从而绕过了这些限制，从而更加方便的绘制二维图像。
+
+%  \tkzname{tkz-fct.sty}  s'appuie sur le programme \tkzname{gnuplot} et le package  \tkzname{fp.sty}. Le premier est utilisé pour obtenir une liste de points, et le second pour évaluer ponctuellement des valeurs.
+\tkzname{tkz-fct.sty}宏包基于\tkzname{gnuplot}工具和\tkzname{fp.sty}宏包，用\tkzname{gnuplot}获取需要绘图点集，用\tkzname{fp.sty}宏包实现计算。
+
+%  Vous devez donc installer \tkzname{Gnuplot},  son installation dépend de votre système, puis  il faudra que votre distribution trouve \tkzname{Gnuplot}, et que  \TeX\  autorise \tkzname{Gnuplot} à écrire un fichier.
+因此，必须安装\tkzname{Gnuplot}工具，另外\LaTeX{}发行版要有访问\tkzname{Gnuplot}工具的权限，同时，\TeX{}也应该允许\tkzname{Gnuplot}能够写入需要的文件。关于如何安装\tkzname{Gnuplot}工具，请查阅相关资料，在此不再冗述。
+
+% \begin{itemize}
+% \item \textcolor{red}{\textbf{Étape 1}}
+%
+% On part du fichier \tkzname{sample.tex} suivant :
+%
+% \medskip
+% \begin{tkzltxexample}[]
+% \documentclass{article}
+% \usepackage{tikz}
+% \begin{document}
+% \begin{tikzpicture}
+% \draw plot[id=f1,samples=200,domain=-2:2] function{x*x};
+% \end{tikzpicture}
+% \end{document}
+% \end{tkzltxexample}
+%  \tkzActivOn
+%
+% La compilation de ce fichier créé avec \TIKZ, produit un fichier nommé    \tkzname{sample.f1.gnuplot}. Le nom du fichier est obtenu à partir de \tkzcname{jobname} et de l'option \tkzname{id}. Ainsi un même fichier peut créer plusieurs fichiers distincts. C'est un fichier texte ordinaire, affecté de l'extension \tkzname{gnuplot}. Il contient un préambule indiquant à \tkzname{gnuplot} qu'il doit créer une table contenant les coordonnées d'un certain nombre de points obtenu par la fonction définie par $x\longrightarrow x^2$. Ce nombre de points est défini par l'option \tkzname{samples}. Cette étape ne présente aucune difficulté particulière. Le fichier obtenu peut être traité manuellement avec \tkzname{gnuplot}.  Le résultat est le fichier suivant :
+%
+% \begin{tkzltxexample}[]
+% set table; set output "sample.f1.table"; set format "%.5f"
+% set samples 200; plot [x=-2:2] x*x
+% \end{tkzltxexample}
+%
+% Une table sera créée et enregistrée dans un fichier texte nommé "sample.f1.table". Les nombres seront formatés pour ne contenir que 5 décimales.
+% La table contiendra 201 couples de coordonnées.
+%
+% \item  \textcolor{red}{\textbf{Étape 2}}
+%
+% Elle est la plus délicate car  le fichier \tkzname{sample.f1.gnuplot} doit être ouvert par \tkzname{gnuplot}. Cela implique d'une part, que   \TEX\  autorise l'ouverture\footnote{c'est ici que l'on parle des options \tkzname{--shell-escape} et \tkzname{--enable-write18}}
+%    du  fichier \tkzname{sample.f1.gnuplot} par \tkzname{gnuplot} et d'autre part, que   \TEX\ puisse trouver \tkzname{gnuplot}\footnote{c'est ici que l'on parle de \tkzname{PATH}}.
+%
+% Si \tkzname{gnuplot} trouve \tkzname{sample.f1.gnuplot} alors il produit un fichier texte \tkzname{sample.f1.table} si l'expression de la fonction est correcte.
+%
+%  \item \textcolor{red}{\textbf{Étape 3}}
+%
+%  Le fichier \tkzname{sample.f1.table} obtenu à l'étape précédente est utilisé par \TIKZ\ pour tracer la courbe.
+%
+% \medskip\hspace{1cm}
+% \begin{tkzltxexample}[]
+% # Curve 0 of 1, 201 points
+% # Curve title: "x*x"
+% # x y type
+% -2.00000 4.00000  i
+% -1.98000 3.92040  i
+% -1.96000 3.84160  i
+% ---.
+% 1.98000 3.92040  i
+% 2.00000 4.00000  i
+% \end{tkzltxexample}
+% \end{itemize}
+\begin{itemize}
+\item \textcolor{red}{\textbf{第1步}}
+
+例如\tkzname{sample.tex}文件中的代码如下：
+
+\medskip
+\begin{tkzltxexample}[]
+\documentclass{article}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+\draw plot[id=f1,samples=200,domain=-2:2] function{x*x};
+\end{tikzpicture}
+\end{document}
+\end{tkzltxexample}
+ \tkzActivOn
+
+编译这一段\TIKZ{}代码，会生成一个\tkzname{sample.f1.gnuplot}文件，
+该文件的文件名由当前工作文件名\tkzcname{jobname}和\tkzname{id}选项值组合而成。
+因此，一个文件可能会生成多个不同的\tkzname{.gnuplot}文件。
+以\tkzname{gnuplot}为扩展名的文件是一个普通的纯文本文件，
+该文件中包含一条命令，用于通知\tkzname{gnuplot}工具创建点坐标表文件，并且为坐标点命名，设置坐标点精度。
+同时，还用\tkzname{samples}选项设置了由$x\longrightarrow x^2$定义的函数的采样点个数，
+当然，也可以手动编写该\tkzname{gnuplot}文件：
+
+\begin{tkzltxexample}[]
+set table; set output "sample.f1.table"; set format "%.5f"
+set samples 200; plot [x=-2:2] x*x
+\end{tkzltxexample}
+
+这两条命令能够创建一个点坐标构成的数据表，并保存到\enquote{sample.f1.table}文件中，
+本例中，坐标包含5位小数，共有201个点。
+
+\item  \textcolor{red}{\textbf{第2步}}
+
+由于必须用\tkzname{gnuplot}工具打开\tkzname{sample.f1.gnuplot}，
+因此，一方面\TEX{}要允许\tkzname{gnuplot}打开\tkzname{sample.f1.gnuplot}
+\footnote{请参阅\TEX{}的\tkzname{--shell-escape}和\tkzname{--enable-write18}命令行参数。}，
+另一方面\TEX{}要能找到\tkzname{gnuplot}工具\footnote{需要设置正确的\tkzname{PATH}环境变量。}。
+
+如果\tkzname{gnuplot}能找到\tkzname{sample.f1.gnuplot}文件，
+并且其函数表达式正确，则会生成\tkzname{sample.f1.table}坐标点数据表文件。
+
+\item \textcolor{red}{\textbf{第3步}}
+
+\TIKZ{}使用获得的\tkzname{sample.f1.table}数据表中的数据绘图。
+
+% \medskip\hspace{1cm}
+\begin{tkzltxexample}[]
+# Curve 0 of 1, 201 points
+# Curve title: "x*x"
+# x y type
+-2.00000 4.00000  i
+-1.98000 3.92040  i
+-1.96000 3.84160  i
+---.
+1.98000 3.92040  i
+2.00000 4.00000  i
+\end{tkzltxexample}
+\end{itemize}
+%
+% \begin{enumerate}
+%
+% \item  Il faut remarquer qu'au cours d'une seconde compilation, si le fichier  \tkzname{sample.f1.gnuplot} ne change pas, alors \tkzname{gnuplot} n'est pas lancé et le fichier présent \tkzname{sample.f1.table} est utilisé.
+%
+% \item On peut aussi remarquer  que si vous êtes paranoïaque et que vous n'autorisez pas le lancement de gnuplot, alors une première compilation permettra de créer le fichier \tkzname{sample.f1.table}, ensuite manuellement, vous pourrez lancer gnuplot  et obtenir le fichier \tkzname{sample.f1.table}.
+%
+% \item Il est aussi possible de créer manuellement ou encore avec un quelconque programme, un fichier data.table que \TIKZ\ pourra lire avec
+%
+% \begin{tkzltxexample}[]
+%   \draw plot[smooth] file {data.table};
+% \end{tkzltxexample}
+% \end{enumerate}
+%
+\begin{enumerate}
+
+\item  注意如果\tkzname{sample.f1.gnuplot}时间戳没有变化，则不会再次启动\tkzname{gnuplot}工具，
+	并且仍然使用当前\tkzname{sample.f1.table}数据表中的数据进行绘图。
+
+\item 如果需要手动运行\tkzname{gnuplot}，那么第一次编译后会创建\tkzname{sample.f1.table}，
+	并在后续处理中使用这个\tkzname{sample.f1.table}数据表文件。
+
+\item 也可以手动或采用其它方式创建该数据表文件，然后供\TIKZ{}使用，如：
+
+\begin{tkzltxexample}[]
+  \draw plot[smooth] file {data.table};
+\end{tkzltxexample}
+\end{enumerate}
+%
+% \subsection{Installation de \tkzname{Gnuplot}}
+\subsection{安装\tkzname{Gnuplot}}
+%
+% Gnuplot est proposé avec la plupart des distributions Linux, et existe pour OS X ainsi que pour Windows.
+Gnuplot是一个跨平台的工具，在多数Linux发生版中已安装有该工具。当然，它也适用于OS X和Windows操作系统。
+%
+% \begin{enumerate}
+%   \item \tkzname{Ubuntu}\NameSys{Linux Ubuntu} ou un autre système Linux: on l'installe en suivant la procédure classique d'installation d'un nouveau paquetage.
+%   \item \tkzname{Windows}\NameSys{Windows XP}  Les utilisateurs de Windows doivent se méfier, après avoir téléchargé la bonne version et installé \tkzname{gnuplot} alors il faudra  renommé wgnuplot en gnuplot. Ensuite il faudra modifier le \tkzname{path}. Si le chemin du programme est \shorthandoff{:}\tkzname{C:\textbackslash gnuplot} alors il faudra ajouter   \tkzname{{C:}\textbackslash gnuplot\textbackslash bin\textbackslash}\shorthandon{:}  aux variables environnement (Aller à "Poste de Travail" puis faire "propriétés", dans l'onglet "Avancé", cliquer sur "Variables d'environnement". ).
+% Ensuite pour compiler sous latex, il faudra ajouter au script de compilation l'option  \tkzname{--enable-write18 }.
+%   \item  \tkzname{OS X}\NameSys{OS X}  C'est le système  qui pose le plus  de problème, car il faut compiler les sources.
+% \end{enumerate}
+
+\begin{enumerate}
+  \item \tkzname{Ubuntu}：对于\NameSys{Ubuntu Linux}或其它Linux系统，按照常规软件包安装方式安装即可。
+  \item \tkzname{Windows}：对于\NameSys{Windows}则需要注意下载与操作系统匹配的版本，
+	  并在安装\tkzname{gnuplot}后，必须将\enquote{wgnuplot}重命名为\enquote{gnuplot}。
+	  然后，还需要修改\tkzname{path}环境变量，例如：
+	  如果程序安装在\tkzname{C:\textbackslash gnuplot}目录中，
+	  则需要将\tkzname{{C:}\textbackslash gnuplot\textbackslash bin\textbackslash}添加到环境变量
+	  (选择\enquote{计算机}的\enquote{属性}，然后在\enquote{高级}选项卡中，
+	  找到\enquote{环境变量}进行添加。)。
+	  接下来，要注意，在后续的\LaTeX{}编译中，必须指定\tkzname{--enable-write18 }编译参数。
+  \item  \tkzname{OS X}：对于\NameSys{OS X}，则需要从源码编译后进行安装。
+\end{enumerate}
+%
+% \subsection{ Test de l'installation de tkz-base}
+% Enregister le code suivant dans un fichier avec le nom test.tex, puis compiler avec pdflatex ou bien lualatex. Vous devez obtenir cela :
+
+\subsection{测试\tkzname{tkz-base}}
+将以下代码保存为\enquote{test.tex}文件，然后用xelatex、pdflatex或lualatex进行编译：
+
+\begin{tkzltxexample}[]
+\documentclass{scrartcl}
+\usepackage{tkz-fct}
+\begin{document}
+  \begin{tikzpicture}
+      \tkzInit[xmin=-5,xmax=5,ymax=2]
+      \tkzGrid
+      \tkzAxeXY
+  \end{tikzpicture}
+\end{document}
+\end{tkzltxexample}
+
+  \begin{tikzpicture}
+      \tkzInit[xmin=-5,xmax=5,ymax=2]
+      \tkzGrid
+      \tkzAxeXY
+   \end{tikzpicture}
+
+   如果能够绘制坐标网格和坐标轴，则表示\tkzname{tkz-base}宏包已正确安装。
+
+% \subsection{ Test de l'installation de tkz-fct}
+   \subsection{测试\tkzname{tkz-fct}}
+% Il suffit d'ajouter une ligne pour tracer la représentation graphique d'une fonction.
+仅需在上述代码中添加一句代码就可以绘制函数图形：
+
+\begin{tkzltxexample}[]
+\documentclass{scrartcl}
+\usepackage[usenames,dvipsnames]{xcolor}
+ \usepackage{tkz-fct}
+  \begin{document}
+    \begin{tikzpicture}[scale=1.25]
+      \tkzInit[xmin=-5,xmax=5,ymax=2]
+      \tkzGrid
+      \tkzAxeXY
+      \tkzFct[color=red]{2*x**2/(x**2+1)}
+     \end{tikzpicture}
+ \end{document}
+\end{tkzltxexample}
+
+\begin{tkzexample}[]
+\begin{tikzpicture}[scale=1.25]
+    \tkzInit[xmin=-5,xmax=5,ymax=2]
+    \tkzGrid
+    \tkzAxeXY
+    \tkzFct[color=red]{2*x**2/(x**2+1)}
+ \end{tikzpicture}
+\end{tkzexample}
+
+如果能够绘制函数图形，则表示\tkzname{tkz-fct}宏包已正确安装。
+
+\end{document}
+\endinput

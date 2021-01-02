@@ -1,0 +1,128 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+% \section{Quelques exemples}
+\section{部分实例}
+
+% \subsection{Variante intermédiaire : \TIKZ\ + \tkzname{tkz-fct}}
+\subsection{\TIKZ\ + \tkzname{tkz-fct}实例}
+% Les codes de \TIKZ\ et de \tkzname{tkz-fct} peuvent se compléter. Ainsi les axes et les textes sont gérés par \tkzname{tkz-fct} mais la courbe est laissée à \TIKZ\ et \tkzname{gnuplot}.
+\TIKZ\ 和\tkzname{tkz-fct}可以相互补充，因此，可以用\tkzname{tkz-fct}处理坐标轴和文本，
+而用\TIKZ\ 和 \tkzname{gnuplot}进行函数绘图。
+
+\bigskip
+
+\begin{center}
+	\begin{tkzexample}[]
+	 \begin{tikzpicture}[scale=3]
+	  \tkzInit[xmin=0,xmax=4,ymin=-1.5,ymax=1.5]
+	  \tkzAxeY[label=$f(x)$]
+	  \tkzDefPoint(1,0){x} \tkzDrawPoint[color=blue,size=0.6pt](x)
+	  \shade[top color=gray!80,bottom color=gray!20] (1,0)%
+	         plot[id=ln,domain=1:2.718] function{log(x)} |-(1,0);
+	  \draw[color=blue] plot[id=ln,domain=0.2:4,samples=200]function{log(x)};
+	  \tkzAxeX
+	  \tkzText[draw,color= black,fill=brown!50](2,-1)%
+	          {$\mathcal{A} = \int_1^{\text{e}}\ln(x)\text{d}x =%
+	            \big[x\ln(x)\big]_{1}^{\text{e}} = \text{e}$}
+	  \tkzText[draw,color= black,fill=brown!50](2,0.3){$\mathcal{A}$}
+	 \end{tikzpicture}
+	\end{tkzexample}
+\end{center}
+
+ \newpage
+ \subsection{\tkzname{Lorentz}曲线}
+
+ $f(x)=\dfrac{\text{e}^x-1}{\text{e}-1}$ et $g(x)=x^3$
+
+
+\begin{center}
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}[scale=1]
+  \tkzInit[xmax=1,ymax=1,xstep=0.1,ystep=0.1]
+  \tkzGrid(0,0)(1,1)
+  \tkzAxeXY
+  \tkzFct[color   = red,domain = 0:1]{(exp(\x)-1)/(exp(1)-1)}
+  \tkzDrawTangentLine[kl=0,kr=0.4,color=red](0)
+  \tkzDrawTangentLine[kl=0.2,kr=0,color=red](1)
+  \tkzText[draw,color  = red,fill = brown!30](0.4,0.6)%
+          {$f(x)=\dfrac{\text{e}^x-1}{\text{e}-1}$}
+  \tkzFct[color   = blue,domain = 0:1]{\x*\x*\x}
+  \tkzDrawTangentLine[kl=0,kr=0.4,color=blue](0)
+  \tkzDrawTangentLine[kl=0.2,kr=0,color=blue](1)
+  \tkzText[draw,color = blue,fill = brown!30](0.8,0.1){$g(x)=x^3$}
+  \tkzFct[color = orange,style = dashed,domain = 0:1]{\x}
+  \tkzDrawAreafg[between=c and b,color=blue!40,domain = 0:1]
+  \tkzDrawAreafg[between=c and a,color=red!60,domain = 0:1]
+\end{tikzpicture}
+\end{tkzexample}
+\end{center}
+
+
+ \newpage
+ \subsection{指数曲线}
+   $f(x) = (-x^2+x+2)\exp(x)$
+
+\begin{center}
+\begin{tkzexample}[small]
+\begin{tikzpicture}[scale=1.25]
+   \tkzInit[xmin=-6,xmax=4,ymin=-5,ymax=6]
+   \tkzGrid
+   \tkzAxeXY
+   \tkzFct[color=red,thick,domain=-6:2.1785]{(-x*x+x+2)*exp(x)}
+   \tkzSetUpPoint[size=6]
+   \tkzDrawTangentLine[draw,kl=2](0)
+   \tkzDefPoint(2,0){b}  \tkzDrawPoint(b)
+   \tkzDefPoint(-1,0){c} \tkzDrawPoint(c)
+   \tkzText(2,4){($\mathcal{C}$)}
+   \tkzText(-2,-3){($\mathcal{T}$)}
+\end{tikzpicture}
+\end{tkzexample}
+\end{center}
+
+
+ \subsection{对数坐标轴}
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}[scale=0.8]
+ \tkzInit[xmax=14,ymax=12]
+ \draw[thin,->] (0,0) -- (14,0) node[below left] {};
+ \draw[thin,->] (0,0) -- (0,12) node[below left] {};
+ \foreach \x/\xtext in {0/0,2/10,4/20,6/30,8/40,10/50,12/60,14/70}%
+     {\draw[shift={(\x,0)}] node[below] {$\xtext$ };}
+ \foreach \y/\z in {0/0,3/1,6/2,9/3,12/4}%
+     {\draw[shift={(0,\y)}] node[left] {$10^{\z}$};}
+ \foreach \x in {1,2,...,14}{\tkzVLine[gray,thin]{\x}}
+ \foreach \y in {3,6,...,12}{\tkzHLine[gray,thin]{\y}}
+ \foreach \y in {0,3,...,9}{
+ \foreach \z in {0.903,1.431,1.806,2.097,2.334,2.535,2.709,2.863}%
+   {\tkzHLine[thin,gray,shift={(0,\y)}] {\z}}}
+ \tkzDefPoint(0,6.90){a}
+ \tkzDefPoint(10,9.30){b}
+ \tkzDrawPoints(a,b)
+ \tkzLabelPoint(a){$M_{1}$}
+ \tkzLabelPoint(b){$M_{11}$}
+\end{tikzpicture}
+\end{tkzexample}
+
+ \subsection{两条函数曲线}
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}[scale=.8]
+ \tkzInit[xmin=5,xmax=40,ymin=0,ymax=350,xstep=2.5,ystep=25]
+ \tkzDrawX[label=$q$]
+ \tkzDrawY[label=$C(q)$]
+ \tkzLabelXY
+ \tkzGrid[color=orange]
+ \tkzFct[domain=5:40]{0.1*\x**2+2*\x+60}
+ \foreach \vv in {5,10,...,40}{%
+   \tkzDefPointByFct(\vv)
+    \tkzDrawPoint(tkzPointResult)}
+ \tkzFct[domain=5:40]{(108*log(\x)-158)}
+ \tkzText(37.5,285){$C$}
+ \tkzText(37.5,220){$R$}
+ \tkzDefSetOfPoints{%
+ 5/15,10/90,15/135,20/170,25/190,30/200,35/230,40/240}
+\tkzDrawSetOfPoints[mark = x,mark size=3pt]
+\end{tikzpicture}
+\end{tkzexample}
+
+\end{document}
+\endinput

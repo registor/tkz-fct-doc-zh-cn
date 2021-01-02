@@ -1,0 +1,204 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+% \section{Installation de \tkzname{tkz-fct}}
+\section{安装\tkzname{tkz-fct}宏包}
+% Il est possible que lorsque vous lirez ce document, \tkzname{tkz-fct} soit présent sur le serveur du \tkzname{CTAN}\footnote{\tkzname{tkz-fct} ne fait pas encore partie de \tkzname{TeXLive} mais il sera bientôt possible de l'installer avec \emph{tlmgr}}.  Si \tkzname{tkz-fct} ne fait pas encore partie de votre distribution, cette section vous montre comment l'installer, elle est aussi nécessaire, si vous avez envie d'installer une version plus récente ou personnalisée de \tkzname{tkz-fct}. \emph{Attention, la présence dans mon dossier texmf, des fichiers de \PGF, s'explique par l'utilisation occasionnelle de la version CVS de \PGF}.
+目前，\tkzname{tkz-fct}宏包已被收录于\tkzname{CTAN}
+如果发行版中未收录\tkzname{tkz-fct}宏包，或使用该宏包更新的版本，或是修改后的该宏包的自定义版本，
+则需要按本节的说明安装\tkzname{tkz-fct}宏包。
+\emph{注意，由于偶尔会使用\PGF{}的CVS版本，此处的\enquote{TEXMF}目录树中包含了\PGF{}的文件。}
+
+% \subsection{Avec TeXLive sous OS X, Linux et Windows}\NameDist{TeXLive}
+\subsection{在OS X、Linux和Windows中基于TeXLive使用\tkzname{tkz-fct}宏包}\NameDist{TeXLive}
+在TeXLive的目录树中，
+会创建一个\tikz[remember picture,baseline=(n1.base)]\node [fill=blue!30,draw] (n1) {tkz};文件夹，
+其路径为：\textcolor{red!60}{ texmf/tex/latex/tkz}。
+当然，名称\enquote{tkz}是非强制性的，也可以使用其它名称。
+
+% \tikz[baseline=(t.base)]\node [fill=blue!30,draw] (t) {texmf}; est un dossier personnel, voici les chemins de ce dossier sur mes deux ordinateurs:
+\tikz[baseline=(t.base)]\node [fill=blue!30,draw] (t) {texmf};是一个文件夹，
+不同系统其路径可能是不同的，并且也可以自定义其工作路径，例如：
+
+\medskip
+\begin{itemize}\setlength{\itemsep}{5pt}
+\item   OS X系统： \colorbox{blue!30}{\textbf{/Users/ego/Library/texmf}};
+\item   Ubuntu系统： \colorbox{blue!30}{\textbf{/home/ego/texmf}}.
+\end{itemize}
+
+\medskip
+\begin{enumerate}
+\item
+
+%  Placez le fichier \tikz[remember picture,baseline=(n2.base)]\node [fill=blue!20,draw] (n2) {tkz-fct.sty};
+%  dans le dossier \tikz[baseline=(p.base)]\node [fill=blue!20,draw] (p) {tkz};.
+ 将\tikz[remember picture,baseline=(n2.base)]\node [fill=blue!20,draw] (n2) {tkz-fct.sty};
+ 复制到\tikz[baseline=(p.base)]\node [fill=blue!20,draw] (p) {tkz};中。
+
+
+
+\medskip
+\begin{tikzpicture} [remember picture,rotate=90]
+
+\node (texmf)   at (4,2)  [draw,fill=blue!30 ] {texmf};
+
+\node (tex)     at (6,0)   [draw ] {tex};
+\node (doc)     at (2,0)   [draw ] {doc};
+
+\node (texgen)  at (7,-2)  [draw ] {generic};
+\node (docgen)  at (0,-2)  [draw ] {generic};
+
+\node (latex)   at (4,-2)  [draw ] {latex};
+
+\node (genpgf)  at (7,-4)  [draw] {pgf};
+\node (latpgf)  at (5,-4)  [draw] {pgf};
+\node (tkz)     at (4,-4)  [draw,fill=blue!20 ] {tkz};
+
+\node (docpgf)  at (0,-4)  [draw] {pgf};
+
+\node (fct)     at (6,-6)  [draw,fill=orange!20] {tkz-fct.sty};
+\node (tkb)     at (4,-6)  [draw,fill=blue!20] {tkzbase};
+\node (tke)     at (2,-6)  [draw,fill=blue!20] {tkzeuclide};
+
+\node (tari)     at (9,-11)  [draw,fill=green!20] {tkz-tools-arith.tex};
+\node (tuti)     at (8,-11)  [draw,fill=green!20] {tkz-tools-utilities.tex};
+\node (tmisc)    at (7,-11)  [draw,fill=green!20] {tkz-tools-misc.tex};
+\node (tmath)    at (6,-11)  [draw,fill=green!20] {tkz-tools-math.tex};
+\node (tbas)     at (5,-11)  [draw,fill=green!20]  {tkz-tools-base.tex};
+\node (base)     at (4,-11)  [draw,fill=green!20]  {tkz-base.sty};
+\node (cfg)      at (3,-11)  [draw,fill=red!20]   {tkz-base.cfg};
+\node (mark)     at (2,-11)  [draw,fill=red!20]   {tkz-obj-marks.tex};
+\node (pts)      at (1,-11)  [draw,fill=red!20]   {tkz-obj-points.tex};
+\node (seg)      at (0,-11)  [draw,fill=red!20]   {tkz-obj-segments.tex};
+
+
+
+\draw[-open triangle 90](texmf.north east) --(tex.south west)    ;
+\draw[-open triangle 90](texmf.south east) -- (doc.north west)   ;
+
+\draw[-open triangle 90](tex.north east) --(texgen.south west)    ;
+\draw[-open triangle 90](tex.south east) -- (latex.north west)   ;
+\draw[-open triangle 90](texgen.east) -- (genpgf.west)   ;
+
+\draw[-open triangle 90](doc.south east) -- (docgen.north west)   ;
+\draw[-open triangle 90](docgen.east) -- (docpgf.west)   ;
+
+\draw[-open triangle 90](latex.north east) -- (latpgf.south west)   ;
+\draw[-open triangle 90](latex.east) -- (tkz.west)   ;
+
+\draw[-open triangle 90,blue!40](tkz.east) to[out=-90,in=90](fct.west) ;
+\draw[-open triangle 90,blue!40](tkz.east) to[out=-90,in=90](tkb.west) ;
+\draw[-open triangle 90,blue!40](tkz.east) to[out=-90,in=90](tke.west) ;
+
+\draw[-open triangle 90,blue!40](tkb.east) to[out=-90,in=90](tari.west) ;
+\draw[-open triangle 90,blue!40](tkb.east) to[out=-90,in=90](tuti.west) ;
+\draw[-open triangle 90,blue!40](tkb.east) to[out=-90,in=90](tmisc.west) ;
+\draw[-open triangle 90,blue!40](tkb.east) to[out=-90,in=90](tmath.west) ;
+\draw[-open triangle 90,blue!40](tkb.east) to[out=-90,in=90](tbas.west) ;
+\draw[-open triangle 90,blue!40](tkb.east) to[out=-90,in=90](base.west) ;
+\draw[-open triangle 90,blue!40](tkb.east) to[out=-90,in=90](cfg.west) ;
+\draw[-open triangle 90,blue!40](tkb.east) to[out=-90,in=90](mark.west) ;
+\draw[-open triangle 90,blue!40](tkb.east) to[out=-90,in=90](pts.west) ;
+\draw[-open triangle 90,blue!40](tkb.east) to[out=-90,in=90](seg.west) ;
+
+\end{tikzpicture}
+
+\begin{tikzpicture}[remember picture,overlay]
+        \path[->,thin,red!50,>=latex] (n1) edge [bend left] (tkz);
+        \path[->,thin,red!50,>=latex] (n2) edge [bend left] (fct);
+\end{tikzpicture}
+
+\vfill
+\newpage
+% \item Ouvrir un terminal, puis faire \tkzname{sudo texhash} si nécessaire.
+\item 打开终端，根据需要执行\tkzname{sudo texhash}命令。
+% \item Vérifier que  \tkzname{Ti\emph{k}Z 2.10}\index{TikZ@Ti\emph{k}Z} est installé car c'est la version  minimum pour le bon fonctionnement de \tkzname{tkz-fct}. \tkzname{tkz-base} doit aussi être installé, de même le binaire « gnuplot» doit être installé sur votre ordinateur. \tkzname{fp.sty} est intensément utilisé mais il est présent dans toutes les distributions.
+\item 检查\tkzname{Ti\emph{k}Z 2.10}\index{TikZ@Ti\emph{k}Z}是否安装，
+	这是确保\tkzname{tkz-fct}宏包正确运行的最低\TIKZ{}版本。
+	同时，也必须先安装\tkzname{tkz-base}宏包。
+	一般来讲，由于比较常用，几乎所在\LaTeX{}发行版中都包含了\tkzname{fp.sty}宏包，
+	若没有该宏包，则需要手动安装。
+\end{enumerate}
+
+
+% \subsection{Avec MikTeX sous Windows XP}\NameDist{MikTeX}\NameSys{Windows XP}
+\subsection{在Windows中基于MikTeX使用\tkzname{tkz-fct}}\NameDist{MikTeX}\NameSys{Windows}
+
+% Je ne connais pas grand-chose à ce système mais un utilisateur de mes packages \textbf{Wolfgang Buechel} a eu la gentillesse de me faire parvenir ce qui suit~:
+由于对Windows系统不熟悉，以下说明中由宏包用户\textbf{Wolfgang Buechel}提供：
+
+% Pour ajouter \tkzname{tkz-fct.sty} à MiKTeX\footnote{Essai réalisé avec la version \tkzname{2.7}}:
+将\tkzname{tkz-fct.sty}宏包安装到MiKTeX\footnote{基于\tkzname{2.7}版本进行测试。}:
+
+\begin{itemize}\setlength{\itemsep}{10pt}
+  % \item ajouter un dossier \tkzname{tkz} dans le dossier
+  %      \textcolor{red}{\texttt{[MiKTeX-dir]/tex/latex}}
+	\item 在\textcolor{red}{\texttt{[MiKTeX-dir]/tex/latex}}中添加\tkzname{tkz}文件夹
+  % \item copier \tkzname{tkz-fct.sty} et tous les packages nécessaires à son fonctionnement  dans le dossier \tkzname{tkz},
+  \item 将\tkzname{tkz-fct.sty}及其所需要的文件复制到\tkzname{tkz}文件夹
+  % \item mettre à jour  MiKTeX, pour cela dans shell DOS lancer la commande   \textbf{\textcolor{red}{|mktexlsr -u|}}
+  \item 在命令行中执行\textbf{\textcolor{red}{|mktexlsr -u|}}命令升级MikTeX
+
+   % ou bien encore, choisir \textcolor{red}{|Start/Programs/Miktex/Settings/General|}
+   或在\textcolor{red}{|Start/Programs/Miktex/Settings/General|}中
+
+    % puis appuyer sur le bouton  \textbf{\textcolor{red}{|Refresh FNDB|}}.
+    单击\textbf{\textcolor{red}{|Refresh FNDB|}}按钮进行更新。
+\end{itemize}
+
+\subsection{安装小结}
+
+% Pour résumer,  \tkzname{Ti\emph{k}Z 2.10} est nécessaire,  ensuite soit \tkzname{tkz-fct} est dans votre distribution et le seul problème est l'installation de \tkzname{gnuplot}; soit il n'est pas dans votre distribution et dans ce cas, il suffit de créer un dossier qui le contiendra ainsi que \tkzname{tkz-base} et les fichiers qui l'accompagnent.
+需要\tkzname{Ti\emph{k}Z 2.10}的支持，安装\tkzname{tkz-fct}宏包，
+可能的一个问题是需要安装\tkzname{gnuplot}。
+如果发行版中不存在\tkzname{tkz-fct}宏包，则需要在TeXLive目录树中创建一个文件夹，
+并将\tkzname{tkz-base}及其需要的文件复制到该文件夹中完成安装。
+
+% Au moment où j'écris ces lignes les fichiers nécessaires pour utiliser \tkzname{tkz-fct} sont~:
+\tkzname{tkz-fct}宏包需要的文件有：
+
+\vspace*{8pt}
+\begin{itemize}
+
+  \item \tkzname{tkz-fct.sty}文件
+
+\vspace*{20pt}
+  \item  \tkzname{tkz-base}所需要的文件有：
+
+  \vspace*{8pt}
+  \begin{itemize}
+    \item \tkzname{tkz-base.sty}  主文件
+    \item \tkzname{tkz-base.cfg}  配置文件
+    \item \tkzname{tkz-tools-base.tex}
+    \item \tkzname{tkz-tools-arith.tex}
+    \item \tkzname{tkz-tools-misc.tex}
+    \item \tkzname{tkz-tools-utilities.tex}
+    \item \tkzname{tkz-obj-points.tex}
+    \item \tkzname{tkz-obj-segments.tex}
+    \item \tkzname{tkz-obj-marks.tex}
+   \end{itemize}
+
+\vspace*{20pt}
+  \item  \tkzname{tkz-euclide} 需要的文件有:
+
+  \vspace*{8pt}
+  \begin{itemize}
+    \item \tkzname{tkz-euclide.sty} 主文件
+    \item \tkzname{tkz-tools-intersections.tex}
+    \item \tkzname{tkz-tools-math.tex}
+    \item \tkzname{tkz-tools-transformations.tex}
+    \item \tkzname{tkz-lib-symbols.tex}  添加的新符号
+    \item \tkzname{tkz-obj-lines.tex}
+    \item \tkzname{tkz-obj-addpoints.tex}  补充的点的定义
+    \item \tkzname{tkz-obj-circles.tex}
+    \item \tkzname{tkz-obj-arcs.tex}
+    \item \tkzname{tkz-obj-angles.tex}
+    \item \tkzname{tkz-obj-polygons.tex}
+    \item \tkzname{tkz-obj-sectors.tex}
+    \item \tkzname{tkz-obj-protractor.tex}
+\end{itemize}
+
+\end{itemize}
+
+\end{document}
+\endinput
+

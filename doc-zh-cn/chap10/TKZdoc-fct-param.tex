@@ -1,0 +1,214 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+% \section{Courbes avec équations paramétrées}
+\section{参数方程的函数曲线}
+ \hypertarget{tfpa}{}
+% \begin{NewMacroBox}{tkzFctPar}{\oarg{local options}\marg{$x(t)$}\marg{$y(t)$}}
+%   \emph{$x(t)$ et $y(t)$ sont des expressions utilisant la syntaxe de \tkzname{gnuplot}. La variable est $t$.}
+%
+% \medskip
+% \begin{tabular}{lll}
+%  \toprule
+%  options             & exemple & explication                         \\
+%  \midrule
+% \TAline{$x(t)$,$y(t)$}{\tkzcname{tkzFctPar[0:1]}\{\tkzcname{t**3}\}\{\tkzcname{t**2}\}}{$x(t)=t^3$,$y(t)=t^2$ }
+%  \bottomrule
+% \end{tabular}
+%
+% Les options sont celles de \TIKZ.
+%
+% \begin{tabular}{lll}
+% \toprule
+% options             & défaut & définition                         \\
+% \midrule
+% \TOline{domain}{-5:5}{domaine de la fonction}
+% \TOline{samples}{200}{nombre de points utilisés}
+% \TOline{id} {tkzfonct}{permet d'identifier les noms des fichiers auxiliaires}
+% \TOline{color}{black}{couleur de la ligne}
+% \TOline{line width} {0.4pt}{épaisseur de la ligne}
+% \TOline{style} {solid}{style de la ligne}
+% \bottomrule
+% \end{tabular}
+%  \end{NewMacroBox}
+\begin{NewMacroBox}{tkzFctPar}{\oarg{命令选项}\marg{$x(t)$}\marg{$y(t)$}}
+\emph{用\tkzname{gnuplot}语法表示$x(t)$和$y(t)$函数，$t$是参数变量。}
+
+\medskip
+\begin{tabular}{lll}
+ \toprule
+ 选项             & 样例 & 说明                         \\
+ \midrule
+\TAline{$x(t)$,$y(t)$}{\tkzcname{tkzFctPar[0:1]}\{\tkzcname{t**3}\}\{\tkzcname{t**2}\}}{$x(t)=t^3$,$y(t)=t^2$ }
+ \bottomrule
+\end{tabular}
+
+可以使用所有有效\TIKZ{}选项。
+
+\begin{tabular}{lll}
+\toprule
+选项             & 默认值 & 含义                         \\
+\midrule
+\TOline{domain}{-5:5}{定义域}
+\TOline{samples}{200}{采样点}
+\TOline{id} {tkzfonct}{函数ID}
+\TOline{color}{black}{颜色}
+\TOline{line width} {0.4pt}{线宽}
+\TOline{style} {solid}{线型}
+\bottomrule
+\end{tabular}
+ \end{NewMacroBox}
+
+\subsection{参数曲线示例1}
+
+\begin{align*}
+x(t) &=t- \sin(t)\\
+y(t) &=1-\cos(t)\\
+\end{align*}
+
+\begin{center}
+\begin{tkzexample}[]
+\begin{tikzpicture}
+  \tkzInit[ymax=2.25,ystep=.5]  \tkzGrid
+  \tkzAxeXY
+  \tkzFctPar[samples=400,domain=0:2*pi]{(t-sin(t))}{(1-cos(t))}
+\end{tikzpicture}
+\end{tkzexample}
+\end{center}
+
+
+\newpage
+\subsection{参数曲线示例2}
+
+\begin{align*}
+x(t) &=t\times \sin(t)\\
+y(t) &=t\times \cos(t)\\
+\end{align*}
+
+\begin{center}
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}[scale=1.25]
+  \tkzInit[xmin=-50,xmax=50,xstep=10,
+           ymin=-50,ymax=50,ystep=10]
+  \tkzGrid
+  \tkzAxeXY
+  \tkzFctPar[smooth,samples=200,domain=0:50]{t*sin(t)}{t*cos(t)}
+\end{tikzpicture}
+\end{tkzexample}
+\end{center}
+
+
+\newpage
+\subsection{参数曲线示例3}
+\begin{align*}
+x(t) &=\exp(t)\times \sin(t)\\
+y(t) &=\exp(t)\times \cos(t)\\
+\end{align*}
+
+\begin{center}
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}[scale=1.5]
+  \tkzInit[xmin=-2,xmax=10,xstep=2,ymin=-10,ymax=4,ystep=2]
+  \tkzGrid[sub]
+  \tkzAxeX[step=2]
+  \tkzAxeY[step=2]
+  \tkzFctPar[samples=400,domain=-pi:pi]{exp(t)*sin(t)}{exp(t)*cos(t)}
+\end{tikzpicture}
+\end{tkzexample}
+\end{center}
+
+
+\newpage
+
+\subsection{参数曲线示例4}
+\begin{align*}
+x(t) &=\cos^3(t)\\
+y(t) &=\sin^3(t)\\
+\end{align*}
+
+\begin{center}
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}[scale=1.25]
+  \tkzInit[xmin=-1,xmax=1,xstep=.2,
+           ymin=-1,ymax=1,ystep=.2]
+  \tkzFctPar[color=red,
+      line width=2pt,
+      fill=orange,
+      opacity=.4,
+      samples=400,
+      domain=0:2*pi]{(cos(t))**3}{(sin(t))**3}
+\end{tikzpicture}
+\end{tkzexample}
+\end{center}
+
+
+\newpage
+\subsection{参数曲线示例5}
+% Saint Valentin version 1
+心形曲线v1
+\begin{align*}
+x(t) &=\sin^3(t)\\
+y(t) &=\cos(t)-\cos^4(t)\\
+\end{align*}
+
+
+\begin{center}
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}[scale=4]
+  \tkzInit[xmin=-1,xmax=1,ymin=-2,ymax=1]
+  \tkzClip
+  \tkzFctPar[samples=500,smooth,domain=-pi:pi,
+             ball color=red,shading=ball]%
+            {(sin(t))**3}{cos(t)-(cos(t))**4}
+\end{tikzpicture}
+\end{tkzexample}
+\end{center}
+
+
+\newpage
+\subsection{参数曲线示例6}
+% Saint Valentin version 2 from  \url{http://mathworld.wolfram.com/HeartCurve.html}
+心形曲线V2，来自\url{http://mathworld.wolfram.com/HeartCurve.html}
+
+\begin{align*}
+x(t) &=\sin(t)\cos(t)\log(|t|)\\
+y(t) &=\sqrt{(|t|)\cos(t)}\\
+\end{align*}
+
+
+\begin{center}
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}[scale=1.5]
+   \tkzInit[xmin=-.4,xmax=.4,xstep=.1,ymin=0,ymax=.7,ystep=.1]
+   \tkzClip
+   \tkzFctPar[samples=2000,smooth,domain=-1:1,
+             ball color=red,shading=ball]%
+   {sin(t)*cos(t)*log(abs(t))}{sqrt(abs(t))*cos(t)}
+\end{tikzpicture}
+\end{tkzexample}
+\end{center}
+
+
+ \newpage
+\subsection{参数曲线示例7}
+% Saint Valentin version 3 from  \url{http://en.wikipedia.org/wiki/Heart_(symbol)}
+心形曲线V3，来自\url{http://en.wikipedia.org/wiki/Heart_(symbol)}
+
+\begin{align*}
+x(t) &=16\sin^3(t)\\
+y(t) &=13\cos(t)-5\cos(2t)-2cos(3t)-cos(4t)\\
+\end{align*}
+
+
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}[scale=1.75]
+  \tkzInit[xmin=-20,xmax=20,xstep=5,ymin=-25,ymax=15,ystep=5]
+  \tkzClip
+  \tkzFctPar[samples=400,smooth,domain=0:6.28,
+             ball color=red,shading=ball]%
+   {16*(sin(t))**3}{13*cos(t)-5*cos(2*t)-2*cos(3*t)-cos(4*t)}
+\end{tikzpicture}
+\end{tkzexample}
+
+\end{document}
+\endinput
+

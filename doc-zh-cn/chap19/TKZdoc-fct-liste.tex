@@ -1,0 +1,45 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+% \section{Liste de toutes les macros}
+\section{命令列表}
+
+% \subsection{Liste de toutes les macros fournies par ce package}
+\subsection{\tkzname{tkz-fct}宏包提供的所有命令}
+
+\begin{itemize}
+\item \tkzhname{\hyperlink{tfct}{tkzFct}}[samples=200,domain=-5:5,color=black,id=tkzfct]\var{gnuplot语法函数表达式}
+\item \tkzhname{\hyperlink{tptfct}{tkzDefPointByFct}}[draw=false]\parg{点名称} --> tkzPointResult
+\item \tkzhname{\hyperlink{tdtl}{tkzDrawTangentLine}}[draw=false,color=black,kr=1,kl=1,style=solid,with=a]\parg{点名称}
+\item \tkzhname{\hyperlink{tda}{tkzDrawArea}}[domain=-5:5,color=lightgray,opacity=.5]
+\item \tkzhname{\hyperlink{tda}{tkzArea}}[domain=-5:5,color = lightgray,opacity=.5]
+\item \tkzhname{\hyperlink{tdafg}{tkzDrawAreafg}}[domain=-5:5,between= a and b]
+\item \tkzhname{\hyperlink{tdafg}{tkzAreafg}}[domain=-5:5,between= a and b]
+\item \tkzhname{\hyperlink{tfpa}{tkzFctPar}}[samples=200,domain=-5:5,
+                             line width=1pt,id=tkzfctpar]{$x(t)$}{$y(t)$}
+\item \tkzhname{\hyperlink{tfpo}{tkzFctPolar}}[samples=200,domain=0:2*pi,
+                             line width=1pt,id=tkzfctpolar]{$\rho(t)$}
+\item \tkzhname{\hyperlink{tdrs}{tkzDrawRiemannSum}}[interval=1:2,number=10,fill=gray]
+\item \tkzhname{\hyperlink{tdrsi}{tkzDrawRiemannSumInf}} [interval=1:2,opacity=.5,fill=gray]
+\item \tkzhname{\hyperlink{tdrss}{tkzDrawRiemannSumSup}} [interval=1:2,number=10,fill=gray]
+\item \tkzhname{\hyperlink{tdrsm}{tkzDrawRiemannSumMid}}[interval=1:2,opacity=1,fill=gray]
+\end{itemize}
+
+\subsection{\tkzname{tkz-base}宏包提供的命令}
+
+\begin{itemize}
+\item \tkzcname{tkzInit}[xmin=0,xmax=10,xstep=1,ymin=0,ymax=10,ystep=1]
+\item \tkzcname{tkzAxeX}
+\item \tkzcname{tkzDrawX}
+\item \tkzcname{tkzLabelX}
+\item \tkzcname{tkzAxeY}
+\item \tkzcname{tkzDrawY}
+\item \tkzcname{tkzLabelY}
+\item \tkzcname{tkzGrid}
+\item \tkzcname{tkzClip}
+\item \tkzcname{tkzDefPoint}
+\item \tkzcname{tkzDrawPoint}
+\item \tkzcname{tkzPointShowCoord}
+\item \tkzcname{tkzLabelPoint}
+\end{itemize}
+\end{document}
+\endinput

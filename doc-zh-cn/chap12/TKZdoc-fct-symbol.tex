@@ -1,0 +1,48 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+% \section{Symboles}
+\section{标记符号}
+% Certains ajoutent aux courbes des symboles afin de donner des indications supplémentaires au lecteur. Voici quelques exemples possibles~:
+可以通过为曲线添加不同标记符号以示区分，如：
+
+\begin{tikzpicture}
+\draw[thick,(-)](0,0)--(2,2);
+\draw[thick,o-o](2,0)--(4,2);
+\draw[thick,)-(](4,0)--(6,2);
+\draw[thick,*-*](6,0)--(8,2);
+  \end{tikzpicture}
+
+\newcommand{\cred}[1]{{\color{red}#1}}
+\newcommand{\cgreen}[1]{{\color{green!50!black}#1}}
+\newcommand{\cblue}[1]{{\color{blue}#1}}
+
+% L'exemple suivant est de \tkzname{Simon Schläpfer}~:
+一个\tkzname{Simon Schläpfer}的例子：
+
+可以分别标记分段函数不同的定义域的函数。
+\[
+y=\left\{\begin{array}{ll}
+    \cred{8-1.5x}&,\text{if }x<2\\
+    \cblue{4}&,\text{if }2 \leq x \leq 3\\
+    \cgreen{2x-4}&,\text{if } x>3
+  \end{array}
+\right.
+\]
+
+\begin{center}
+\begin{tkzexample}[vbox]
+\begin{tikzpicture}
+  \tkzInit[xmin=-1,xmax=6,ymin=0,ymax=10,xstep=1,ystep=1]
+  \tkzGrid[color=gray]
+  \tkzAxeXY
+  \tkzFct[{-[},color=red,domain =-1:2,samples=2]{8-1.5*\x}
+  \tkzFct[{[-]},color=blue,domain =2:3,samples=2]{4}
+  \tkzFct[{]-},color=green!50!black,domain =3:6,samples=2]{2*\x-4}
+\end{tikzpicture}
+\end{tkzexample}
+
+\end{center}
+
+
+\end{document}
+\endinput
