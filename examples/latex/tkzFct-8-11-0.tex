@@ -1,0 +1,28 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.75]
+ \tkzInit[xmax=20,ymax=12]
+ \tkzGrid[color=orange,sub](0,0)(20,12)
+ \tkzAxeXY
+ \tkzFct[samples=400,domain =0:8]{(32-4*x)**(0.5)}   % a
+ \tkzFct[samples=400,domain =0:18]{(72-4*x)**(0.5)}  % b
+ \tkzFct[samples=400,domain =0:20]{(112-4*x)**(0.5)} % c
+ \tkzFct[samples=400,domain =2:20]{(152-4*x)**(0.5)} % d
+ \tkzFct[samples=400,domain =12:20]{(192-4*x)**(0.5)}% e
+ \def\tkzFctgnuf{0} % f
+ \def\tkzFctgnug{12}% g
+ \tkzDrawAreafg[between= b and a,color=gray!80,domain = 0:8]
+ \tkzDrawAreafg[between= b and f,color=gray!80,domain = 8:18]
+ \tkzDrawAreafg[between= d and c,color=gray!50,domain = 2:20]
+ \tkzDrawAreafg[between= g and c,color=gray!50,domain = 0:2]
+ \tkzDrawAreafg[between= g and e,color=gray!20,domain =12:20]
+\end{tikzpicture}%
+
+\end{document}

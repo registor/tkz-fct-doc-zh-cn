@@ -1,0 +1,22 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=1.25]
+  \tkzInit[xmax=1,ymax=1,xstep=0.1,ystep=0.1]
+  \tkzGrid(0,0)(1,1)
+  \tkzAxeXY
+  \tkzFct[color = red,thick, domain =0:1]{(exp(\x)-1)/(exp(1)-1)}
+  \tkzSetUpPoint[size=12]
+  \tkzDrawTangentLine[draw, kl = 0,  kr = 0.4](0)
+  \tkzDrawTangentLine[draw, kl = 0.4,kr = 0  ](1)
+  \tkzText[draw,color = red,fill = orange!20](0.5,0.6)%
+          {$f(x)=\dfrac{\text{e}^x-1}{\text{e}-1}$}
+\end{tikzpicture}
+
+\end{document}

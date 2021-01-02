@@ -1,0 +1,22 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}
+  \def\Asmall{0.7 } \def\Abig{3 } \def\B{20}%Herbert Voss
+  \path[fill=blue!40!black,domain=-pi:pi,samples=500,smooth,variable=\t]%
+          plot({\Abig*cos(\t r)+\Asmall*cos(\B*\t r)},%
+               {0.5*\Abig*sin(\t r)+0.5*\Asmall*sin(\B*\t r)});
+  \def\Asmall{0.7 } \def\Abig{3 } \def\B{10}
+  \path[shift={(1,1)},fill=blue!40!black,%
+        domain=-pi:pi,samples=500,smooth,variable=\t]%
+        plot({\Abig*cos(\t r)+\Asmall*cos(\B*\t r)},%
+             {0.5*\Abig*sin(\t r)+0.5*\Asmall*sin(\B*\t r)});
+\end{tikzpicture}
+
+\end{document}

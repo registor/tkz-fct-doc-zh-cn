@@ -1,0 +1,19 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}
+ \tkzInit[xmin=-0.2,xmax=0.2,xstep=.1,
+          ymin=-12,ymax=6,ystep=2]
+ \tkzGrid
+ \tkzAxeXY
+ \tkzFct[domain = -.1:.2]%
+ {-5+x*(0.5+4*x*(x*(-2+x*1)))}
+\end{tikzpicture}
+
+\end{document}

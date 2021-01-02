@@ -1,0 +1,41 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}
+\tkzInit[xmin=-1,xmax=1,ymin=-1.8,ymax=1.2,xstep=0.1,ystep=0.2]
+\tkzGrid
+\tkzAxeXY
+\tkzFct[samples = 400, line width=4pt, color = red,opacity=.5](-1---1){1/(1+8*\x*\x)}
+ \tkzFct[smooth,samples = 400, line width=1pt, color = blue,domain =-1:1]%
+{1.0+((((((((((((((((((((
+                          8140.04642)*\x
+                            +0.01544)*\x
+                        -32356.67279)*\x
+                            -0.05562)*\x
+                        +54061.87086)*\x
+                            +0.08097)*\x
+                        -49850.83249)*\x
+                            -0.05934)*\x
+                        +28118.29594)*\x
+                            +0.02540)*\x
+                        -10240.01777)*\x
+                            -0.00580)*\x
+                         +2516.04640)*\x
+                            +0.00071)*\x
+                          -444.23476)*\x
+                            -0.00004)*\x
+                           +62.60245)*\x
+                            +0.00000)*\x
+                            -7.99142)*\x
+                            -0.00000)*\x}
+ \tkzSetUpPoint[size=16,color=black,fill=yellow]
+ \foreach \v in {-1,-0.8,---.,1}{\tkzDefPointByFct[draw](\v)}
+\end{tikzpicture}
+
+\end{document}

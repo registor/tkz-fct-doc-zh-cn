@@ -1,0 +1,24 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}[xscale=1.5]
+ \tikzset{tan style/.style={-}}
+ \tkzInit[xmin=0,xmax=800,xstep=100,
+          ymin=0,ymax=1800,ystep=400]
+ \tkzGrid[color=brown,sub,subxstep=50,subystep=200](0,0)(800,1800)
+ \tkzAxeXY
+ \tkzFct[color=red,samples=100,domain = 0:800]%
+    {(1./90000)*\x*\x*\x-(1./100)*\x*\x+(113./36)*\x}
+ \tkzDrawTangentLine[color=blue,kr=300,kl=450,coord](450)
+ \tkzText[draw, color    = black,%
+           fill     = brown!50, opacity  = 0.8](300,1200)%
+ {$f(x)=\dfrac{1}{90000}x^3 -\dfrac{1}{{100}}x^2 +\dfrac{113}{36}x$}
+ \end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,18 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=4]
+  \tkzInit[xmin=-1,xmax=1,ymin=-2,ymax=1]
+  \tkzClip
+  \tkzFctPar[samples=500,smooth,domain=-pi:pi,
+             ball color=red,shading=ball]%
+            {(sin(t))**3}{cos(t)-(cos(t))**4}
+\end{tikzpicture}
+
+\end{document}

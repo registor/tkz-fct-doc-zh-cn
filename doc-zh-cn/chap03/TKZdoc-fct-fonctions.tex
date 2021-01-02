@@ -3,15 +3,15 @@
 % \section{Les différentes macros}
 \section{命令简介}
 
-% \tkzname{Gnuplot} détermine les points nécessaires pour tracer la courbe. Le nombre de points est fixé par l'option \tkzname{samples}; dans les premiers exemples la valeur du nombre de points est celle donnée par défaut. Ensuite  Tikz va utiliser cette table pour tracer la courbe. C'est donc \tkzname{Tikz} qui trace la courbe.
-\tkzname{tkz-fct}宏包通过\tkzname{Gnuplot}确定绘图需要的点，采样点数由\tkzname{samples}选项确定，
+% \tkzname{gnuplot} détermine les points nécessaires pour tracer la courbe. Le nombre de points est fixé par l'option \tkzname{samples}; dans les premiers exemples la valeur du nombre de points est celle donnée par défaut. Ensuite  Tikz va utiliser cette table pour tracer la courbe. C'est donc \tkzname{Tikz} qui trace la courbe.
+\tkzname{tkz-fct}宏包通过\tkzname{gnuplot}确定绘图需要的点，采样点数由\tkzname{samples}选项确定，
 在第1个示例中，采样点数取默认值。
 得到采样点数据表后，用\TIKZ{}实现绘图。
 
 % \subsection{Tracé d'une fonction avec gnuplot \tkzcname{tkzFct}}
-\subsection{\tkzcname{tkzFct}命令：用gnuplot绘制函数图像}
+\subsection{\tkzcname{tkzFct}命令：用gnuplot绘制函数曲线}
 % Cette première macro est la plus importante car elle permet de tracer la représentation graphique d'une fonction continue .\hypertarget{tfct}{}
-该命令是一个重要的命令，它能够绘制连续函数的图像。\hypertarget{tfct}{}
+该命令是一个重要的命令，它能够绘制连续函数的曲线。\hypertarget{tfct}{}
 
 % \begin{NewMacroBox}{tkzFct}{\oarg{local options}\var{gnuplot expression}}
 % \emph{La fonction est donnée en utilisant la syntaxe de gnuplot. x est la variable sauf si \tkzname{xstep} est différent de 1, dans ce cas la variable est \tkzcname{x}.}
@@ -83,7 +83,7 @@
 % \subsection{option : \tkzname{samples}}
 \subsection{\tkzname{samples}选项}
 
-注意，绘制直线的函数图像，仅需要两个点即可，如
+注意，绘制直线的函数曲线，仅需要两个点即可，如
 % Il faut remarquer que pour tracer une droite seulement deux points sont nécessaires, ainsi le code~:
 
 \begin{tkzltxexample}[]
@@ -106,7 +106,7 @@
 这些数据足够用于绘制简单的线段。
 
 % On demande 400 valeurs pour la table qui va permettre le tracé. Par défaut, la valeur choisie est 200.
-以下代码中，为函数图像设置了400个采样点，\tkzname{samples}选项的默认值是200。
+以下代码中，为函数曲线设置了400个采样点，\tkzname{samples}选项的默认值是200。
 
 \medskip
 \begin{tkzexample}[latex=7cm]
@@ -145,7 +145,7 @@
 否则，则会使用整数除法运算。
 
 % Ensuite, j'utilise les macros pour placer des points
-然后，用该命令绘制函数图像。
+然后，用该命令绘制函数曲线。
 %<--------------------------------------------------------------------------->
 \begin{tkzexample}[vbox]
 \begin{tikzpicture}[scale=1.5]
@@ -197,7 +197,7 @@
    $y=(x-4)\text{e}^{-0.25x+5}$
 
 % Il est possible de dessiner une autre grille.
-可以采用子网格突出函数图像的局部。
+可以采用子网格突出函数曲线的局部。
 
 \begin{tkzexample}[latex=8cm]
 \begin{tikzpicture}

@@ -1,0 +1,31 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=2]
+ \tkzInit[xmin=0,xmax=3,xstep=1,
+          ymin=-2,ymax=2,ystep=1]
+ \tkzGrid
+ \tkzAxeXY
+ \tkzFct[domain= 0.4:3]{1./x}
+ \tkzDefPointByFct(1)
+ \tkzGetPoint{A}
+ \tkzDefPointByFct(2)
+ \tkzGetPoint{B}
+ \tkzLabelPoints[above right](A,B)
+ \tkzDrawArea[color=blue!30,
+              domain = 1:2]
+ \tkzFct[domain = 0.5:3]{log(x)}
+ \tkzDrawArea[color=red!30,
+              domain = 1:2]
+ \tkzPointShowCoord(A)
+ \tkzPointShowCoord(B)
+ \tkzDrawPoints(A,B)
+\end{tikzpicture}
+
+\end{document}

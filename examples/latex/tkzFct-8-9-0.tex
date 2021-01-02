@@ -1,0 +1,21 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=1.25]
+  \tkzInit[xmax=1,ymax=1,xstep=0.1,ystep=0.1]
+  \tkzGrid
+  \tkzAxeXY
+  \tkzFct[color   = red,domain = 0:1]{(exp(\x)-1)/(exp(1)-1)}
+  \tkzFct[color   = blue,domain = 0:1]{\x*\x*\x}
+  \tkzFct[color  = green,domain = 0:1]{\x}
+  \tkzDrawAreafg[between = c and b,color=purple!40,domain = 0:1]
+  \tkzDrawAreafg[between = c and a,color=gray!60,domain = 0:1]
+\end{tikzpicture}
+
+\end{document}

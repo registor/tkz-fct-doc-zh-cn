@@ -1,0 +1,17 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=1]
+  \tkzInit[xmax=1,xstep=0.1,ymin=0.0,ymax=1,ystep=0.1]
+  \tkzGrid      \tkzAxeXY
+  \tkzFct[domain = 0.00001:1]{(\x**\x)}
+  \tkzDrawTangentLine[draw,color = red, kr = 0.2,kl = 0.2]({1/exp(1)})
+\end{tikzpicture}
+
+\end{document}

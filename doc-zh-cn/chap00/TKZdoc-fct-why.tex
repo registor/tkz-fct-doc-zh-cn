@@ -4,59 +4,61 @@
 \section{概述}
 
 % \TIKZ\ apporte différentes possibilités pour obtenir les représentations graphiques des fonctions. J'ai privilégié l'utilisation de \tkzname{gnuplot}, car je trouve \tkzname{pgfmath} trop lent et les résultats trop imprécis.
-\TIKZ{}为函数绘制图形提供了多种可能，
-由于\tkzname{pgfmath}库太慢，并且结果不够精确，
-因此，一个更好地选择是使用\tkzname{gnuplot}模块进行绘图函数图像。
+\TIKZ{}为绘制函数曲线提供了多种方式，
+但其\tkzname{pgfmath}库太慢，且结果精确不高，
+因此，使用\tkzname{gnuplot}工具绘制函数曲线是一个更为合理的选择。
 
 % Avec \TIKZ\ et \tkzname{gnuplot}, on obtient la représentation d'une fonction à l'aide de
-在\TIKZ{}中，使用\tkzname{gnuplot}\footnote{Gnuplot是一个交互式命令行绘图工具，需要提前安装该软件。}绘制函数图像的基本语法是：
+在\TIKZ{}中，使用\tkzname{gnuplot}工具\footnote{gnuplot是一个交互式命令行绘图工具，
+需要提前安装该软件。}绘制函数曲线的基本语法是：
 
 \begin{tkzltxexample}[]
-  \draw[options] plot function {gnuplot expression};
+  \draw[options] plot function {gnuplot函数表达式};
 \end{tkzltxexample}
 
 %  Dans cette nouvelle version de \tkzname{tkz-fct}, la macro \tkzcname{tkzFct} reprend le code précédent avec les mêmes options que celles de \TIKZ. Parmi les options, les plus importantes sont \tkzname{domain}  et \tkzname{samples}.
-在新版\tkzname{tkz-fct}宏包中，用\tkzcname{tkzFct}命令及\TIKZ{}样式选项进行绘图。
-其中，最为重要的是\tkzname{domain}和\tkzname{samples}选项。
+在新版\tkzname{tkz-fct}宏包中，用\tkzcname{tkzFct}命令及\TIKZ{}选项进行绘图。
+其中，最重要选项是\tkzname{domain}和\tkzname{samples}。
 
 % La macro \tkzcname{tkzFct} remplace \tkzcname{draw plot function} mais exécute deux tâches supplémentaires, en plus du tracé. Tout d'abord, l'expression de la fonction est sauvegardée avec la syntaxe de \tkzname{gnuplot} et également  sauvegardée avec la syntaxe de  \tkzname{fp} pour une utilisation ultérieure. Cela permet, sans avoir à redonner l'expression, de placer par exemple, des points sur la courbe (les images sont calculées à l'aide de  \tkzname{fp}), ou bien encore, de tracer des tangentes.
 本宏包使用\tkzcname{tkzFct}命令代替了\tkzcname{draw plot function}，
 同时，还实现了两个重要的操作。
 首先是用\tkzname{gnuplot}语法保存函数表达式，
-同时，也用\tkzname{fp}保存该函数表达式，以备后续使用。
-这使得可以在不返回表达式的情况下，在曲线上布置点(通过\tkzname{fp}计算绘图)，
-或者可以绘制切线。
+同时，也用\tkzname{fp}保存该函数表达式，以方便后续使用。
+这使得可以在不返回表达式的情况下，在曲线上布置点(通过\tkzname{fp}计算)，
+或者绘制切线。
 
 % Ensuite, et c'est le plus important, \tkzcname{tkzFct} tient compte des unités utilisées pour l'axe des abscisses et celui des ordonnées. Ces unités sont définies en utilisant la macro \tkzcname{tkzInit} du package \tkzname{tkz-base} avec les options \tkzname{xstep} et \tkzname{ystep}.
-当然，最重要的是，\tkzcname{tkzFct}命令能够独立指定横坐标和纵坐标的步长单位，
-这由\tkzname{tzk-base}宏包的\tkzcname{tkzInit}命令通过\tkzname{xstep}和\tkzname{ystep}选项实现。
+当然，最重要的是，\tkzcname{tkzFct}命令能独立使用横坐标和纵坐标步长单位，
+其步长单位由\tkzname{tzk-base}宏包的\tkzcname{tkzInit}命令，
+通过\tkzname{xstep}和\tkzname{ystep}选项进行设置。
 
 % La macro \tkzcname{tkzFct} intercepte les valeurs données à l'option \tkzname{domain} et évidemment l'expression mathématique de la fonction;
-\tkzcname{tkzFct}命令能够使用\tkzname{domain}选项的值和函数表达式。
+\tkzcname{tkzFct}命令可以使用\tkzname{domain}选项和函数表达式。
 % si \tkzname{xstep} et \tkzname{ystep} diffèrent de 1 alors il est tenu compte de ces valeurs pour le domaine, ainsi que pour les calculs d'images. Lorsque \tkzname{xstep} diffère de 1 alors l'expression donnée, doit utiliser uniquement \tkzcname{x} comme variable, c'est ainsi qu'il est possible d'ajuster les valeurs.  Cela permet d'éviter des débordements dans les calculs.
 如果\tkzname{xstep}和\tkzname{ystep}的步长为1，
-则应直接使用值域范围和计算结果绘制图像。
+则直接使用值域范围和计算结果绘制图像。
 如果\tkzname{xstep}的步长不为1，
-则给定的表达式应该仅使用\tkzcname{x}命令作为变量，
-这有助于通过调整数值以避免计算中的数据溢出。
+则表达式中的自变量须使用\tkzcname{x}宏表示，
+这能有效避免计算中的数据溢出问题。
 
 % Par exemple, soit à tracer le graphe de la fonction $f$  définie par :
 例如，有如下函数$f$:
 
 \[
- 0\leq x\leq 100 \ \text{et}\ f(x)=x^3
+f(x)=x^3 \text{其中} 0\leq x\leq 100
 \]
 
 % Les valeurs de $f(x)$ sont comprises entre 0 et $\numprint{1000000}$. En choisissant \tkzname{xstep=10} et \tkzname{ystep=100000}, les axes auront environ $10$ cm de longueur (sans mise à l'échelle).
-$f(x)$值域在$0$到$\numprint{1000000}$之间，
+$f(x)$的值域在$0$到$\numprint{1000000}$之间，
 令\tkzname{xstep=10}和\tkzname{ystep=100000}，
-坐标轴长度为$10$ cm(无缩放).
+则坐标轴长度为$10$ cm(无缩放).
 
 % Les valeurs du domaine seront comprises entre $0$ et $10$, mais l'expression donnée à \tkzname{gnuplot}, comportera des  \tkzcname{x} équivalents à $x \times 10$, enfin, la valeur finale  sera divisée par \tkzname{ystep=100000}. Les valeurs de $f(x)$ resteront ainsi  comprises entre $0$ et $10$.
 这将可以将值域限定在$0$到$10$之间，
 但\tkzname{gnuplot}表达式中的\tkzcname{x}则相当于$x \times 10$。
 将计算结果除以\tkzname{ystep=100000}，
-使$f(x)$的结果不变，仍在$0$到$10$之间。
+可以使$f(x)$的结果不变，仍在$0$到$10$之间。
 
  \begin{tkzexample}[latex=10cm,small]
   \begin{tikzpicture}[scale=.5]

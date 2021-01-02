@@ -1,0 +1,19 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=3]
+        \tkzInit[xmin=-5,xmax=5,ymin=-5,ymax=5]
+        \tkzFctPolar[domain     = -pi:pi,
+                     samples    = 800,
+                     ball color = red,
+                     shading    = ball]%
+          {2-2*sin(t)+sin(t)*sqrt(abs(cos(t)))/(sin(t)+1.4)}
+\end{tikzpicture}
+
+\end{document}

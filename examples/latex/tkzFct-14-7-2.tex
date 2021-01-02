@@ -1,0 +1,21 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+         \begin{tikzpicture}[xscale=2,yscale=2.5]
+            \tkzInit[xmin=0,xmax=6,ymax=0.5,ystep=0.1]
+            \tkzDrawX[label=$v$]
+            \tkzDrawY[label=$g(v)$]
+            \tkzGrid(0,0)(6,0.5)
+            \tkzFct[color   = red,domain =1:6]{(2*(x-1)*(x-1))/(x*x*x)}
+            \tkzDrawTangentLine[color=blue,draw](3)
+            \tkzDefPointByFct(1)
+            \tkzText[draw, fill = brown!30](4,0.1){$g(v)=2\dfrac{(v-1)^2}{v^3}$}
+         \end{tikzpicture}
+
+\end{document}

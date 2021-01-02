@@ -1,0 +1,16 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}
+  \tkzInit[ymax=2.25,ystep=.5]  \tkzGrid
+  \tkzAxeXY
+  \tkzFctPar[samples=400,domain=0:2*pi]{(t-sin(t))}{(1-cos(t))}
+\end{tikzpicture}
+
+\end{document}

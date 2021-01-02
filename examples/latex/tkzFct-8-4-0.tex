@@ -1,0 +1,24 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=2]
+  \tkzInit[xmin=-3,xmax=4,ymin=-2,ymax=4]
+  \tkzGrid(-3,-2)(4,4)
+  \tkzDrawXY
+  \tkzFct[domain = -2.15:3.2]{(2+\x)*exp(-\x)}
+  \tkzDrawArea[pattern=north west lines,domain =-2:2]
+  \tkzDrawTangentLine[draw,color=blue](0)
+  \tkzDrawTangentLine[draw,color=blue](-1)
+  \tkzDefPointByFct(2)  \tkzGetPoint{C}
+  \tkzDefPoint(2,0){B}
+  \tkzDrawPoints(B,C)  \tkzLabelPoints[above right](B,C)
+  \tkzRep
+\end{tikzpicture}
+
+\end{document}

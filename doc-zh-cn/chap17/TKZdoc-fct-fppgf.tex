@@ -6,7 +6,7 @@
 % \subsection{\tkzname{pgfmath}}
 \subsection{\tkzname{pgfmath}}
 
-% On peut faire maintenant beaucoup de tracés sans Gnuplot, voici à titre d'exemple et d'après une idée d'Herbert Voss (le membre le plus actif de la communauté Pstricks) un exemple de courbes obtenues avec seulement Tikz.
+% On peut faire maintenant beaucoup de tracés sans gnuplot, voici à titre d'exemple et d'après une idée d'Herbert Voss (le membre le plus actif de la communauté Pstricks) un exemple de courbes obtenues avec seulement Tikz.
 即便是没有Gnuplot，也可以绘制图形，下面是\tkzname{Herbert Voss}(Pstricks社区最活跃的成员)仅使用\TIKZ{}绘图的一种方法。
 
 \begin{center}
@@ -42,8 +42,8 @@
 由于使用对数的方式进行计算，因此，这可能会造成错误。
 为此，\tkzname{tkz-fct.sty}宏包通过修改\tkzname{FP@pow}宏以避免这个错误。
 
-%  Pour calculer les pentes des tangentes et pour placer des points sur les courbes, mon module traduit l'expression donnée pour Gnuplot et la stocke dans une commande \tkzcname{tkzFcta}, pour être utilisée ensuite avec les macros \tkzcname{tkzDefPointByFct}\ et \tkzcname{tkzDrawTangentLine}.
-当需要计算切线的斜率时并在函数曲线上放置点时，该宏包通过转换表达式为\tkzname{Gnuplot}提供数据，
+%  Pour calculer les pentes des tangentes et pour placer des points sur les courbes, mon module traduit l'expression donnée pour gnuplot et la stocke dans une commande \tkzcname{tkzFcta}, pour être utilisée ensuite avec les macros \tkzcname{tkzDefPointByFct}\ et \tkzcname{tkzDrawTangentLine}.
+当需要计算切线的斜率时并在函数曲线上放置点时，该宏包通过转换表达式为\tkzname{gnuplot}提供数据，
 并将结果保存在\tkzname{tkzFcta}宏中，
 在后续代码中，可以使用\tkzcname{tkzDefPointByFct} 和 \tkzcname{tkzDrawTangentLine}命令使用这些数据。
 

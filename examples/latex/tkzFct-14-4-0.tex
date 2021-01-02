@@ -1,0 +1,30 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=0.8]
+ \tkzInit[xmax=14,ymax=12]
+ \draw[thin,->] (0,0) -- (14,0) node[below left] {};
+ \draw[thin,->] (0,0) -- (0,12) node[below left] {};
+ \foreach \x/\xtext in {0/0,2/10,4/20,6/30,8/40,10/50,12/60,14/70}%
+     {\draw[shift={(\x,0)}] node[below] {$\xtext$ };}
+ \foreach \y/\z in {0/0,3/1,6/2,9/3,12/4}%
+     {\draw[shift={(0,\y)}] node[left] {$10^{\z}$};}
+ \foreach \x in {1,2,...,14}{\tkzVLine[gray,thin]{\x}}
+ \foreach \y in {3,6,...,12}{\tkzHLine[gray,thin]{\y}}
+ \foreach \y in {0,3,...,9}{
+ \foreach \z in {0.903,1.431,1.806,2.097,2.334,2.535,2.709,2.863}%
+   {\tkzHLine[thin,gray,shift={(0,\y)}] {\z}}}
+ \tkzDefPoint(0,6.90){a}
+ \tkzDefPoint(10,9.30){b}
+ \tkzDrawPoints(a,b)
+ \tkzLabelPoint(a){$M_{1}$}
+ \tkzLabelPoint(b){$M_{11}$}
+\end{tikzpicture}
+
+\end{document}

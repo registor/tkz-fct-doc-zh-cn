@@ -1,0 +1,19 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}
+  \tkzInit[xmin=-1,xmax=6,ymin=0,ymax=10,xstep=1,ystep=1]
+  \tkzGrid[color=gray]
+  \tkzAxeXY
+  \tkzFct[{-[},color=red,domain =-1:2,samples=2]{8-1.5*\x}
+  \tkzFct[{[-]},color=blue,domain =2:3,samples=2]{4}
+  \tkzFct[{]-},color=green!50!black,domain =3:6,samples=2]{2*\x-4}
+\end{tikzpicture}
+
+\end{document}

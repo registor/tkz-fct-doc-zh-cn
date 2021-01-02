@@ -1,0 +1,20 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+ \begin{tikzpicture}[scale=2.75]
+     \tkzInit[xmin=-2,xmax=3,ymax=3]
+     \tkzGrid[color=orange](-2,0)(3,3)
+     \tkzAxeX
+     \tkzAxeY
+     \tkzFct[color = red ,domain = -1:2]{(((x+1)*x)*x)**0.5}
+     \tkzDrawTangentLine(0)
+     \tkzText[draw,color = red,fill = orange!20](2,1){$f(x)=\sqrt{x^3+x^2}$}
+ \end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,18 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=1.5]
+   \tkzInit[xmin=-.4,xmax=.4,xstep=.1,ymin=0,ymax=.7,ystep=.1]
+   \tkzClip
+   \tkzFctPar[samples=2000,smooth,domain=-1:1,
+             ball color=red,shading=ball]%
+   {sin(t)*cos(t)*log(abs(t))}{sqrt(abs(t))*cos(t)}
+\end{tikzpicture}
+
+\end{document}

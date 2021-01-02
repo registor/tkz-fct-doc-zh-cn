@@ -1,0 +1,23 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}
+ \tkzInit[xmin=4,xmax=18,xstep=2,
+          ymin=20,ymax=90,ystep=10]
+ \tkzFct[domain = 5:18]%
+        {(\x-4)*exp(-0.25*\x+5)}
+ \tkzGrid(4,20)(18,90)
+ \tkzAxeXY
+ \tkzGrid[sub,
+          subxstep=0.5,
+          subystep=2,
+          color=brown](6,60)(12,90)
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,19 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+ \begin{tikzpicture}[]
+ \tkzInit[ymax=20,ystep=5]
+ \tkzAxeXY
+ \tkzFct[color=red,domain=0:10,samples=2]{2*x+5}
+ \tkzFct[color=blue,domain=0:10,samples=2]{-x+15}
+ \tkzFct[color=green,domain=0:10,samples=2]{7} % 7/5=1
+ \tkzFct[color=purple,domain=0:10,samples=2]{7.}%7.0/5 =1.2
+\end{tikzpicture}
+
+\end{document}

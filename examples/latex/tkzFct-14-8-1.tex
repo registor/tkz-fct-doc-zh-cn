@@ -1,0 +1,29 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=4]
+  \tkzInit[xmax=3,ymax=2];
+  \tkzAxeXY
+  \tkzGrid(0,0)(3,2)
+  \tkzFct[color   = red,domain =1/3:3]{0.125*(3*\x-1)+0.375*(3*\x-1)/(\x*\x)}
+  \tkzDefPointByFct[draw](2)
+  \tkzDefPointByFct[draw](3)
+  \tkzDrawTangentLine[draw,color=blue](1)
+  \tkzFct[color   = green,domain =1/3:3]{0.125*(3*x-1)}
+  \tkzSetUpPoint[size=8,fill=orange]
+  \tkzDefPointByFct[draw](3)
+  \tkzDefPointByFct[draw](1/3)
+  \tkzDefPoint(1,1){f}
+  \tkzDrawPoint(f)
+  \tkzText[draw,fill = white,text=red](1,1.5)%
+{$f(x)=\dfrac{1}{8}(3x-1)+\dfrac{3}{8}\left(\dfrac{3x-1}{x^2}\right)$}
+\tkzText[draw,fill = white,text=green](2,0.4){$g(x) = \dfrac{3x-1}{8}$}
+\end{tikzpicture}
+
+\end{document}

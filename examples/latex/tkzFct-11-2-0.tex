@@ -1,0 +1,18 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=1.25]
+  \tkzInit[xmin=-50,xmax=50,xstep=10,
+           ymin=-50,ymax=50,ystep=10]
+  \tkzGrid
+  \tkzAxeXY
+  \tkzFctPar[smooth,samples=200,domain=0:50]{t*sin(t)}{t*cos(t)}
+\end{tikzpicture}
+
+\end{document}

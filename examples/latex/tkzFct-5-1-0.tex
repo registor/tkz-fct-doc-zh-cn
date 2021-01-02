@@ -1,0 +1,19 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=1.25]
+  \tkzInit[xmin=-2,xmax=2,xstep=1,
+           ymin=-8,ymax=24,ystep=8]
+  \tkzGrid  \tkzAxeXY
+  \tkzFct[domain =-1.5:1]{3.0-1.3125*x**5-2.5*x**3}
+  \tkzDefPointByFct(.5)  \tkzGetPoint{A}\tkzDrawPoint(A)
+  \tkzLabelPoint[above right](A){$A_0$}
+\end{tikzpicture}
+
+\end{document}

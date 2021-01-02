@@ -32,7 +32,7 @@
 *.xdv
 *.pdf
 !doc-zh-cn/main.pdf
-!doc-en/*.pdf
+!doc-fr/*.pdf
 
 # Generated files (gnuplot)
 *.gnuplot

@@ -1,0 +1,26 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.8]
+ \tkzInit[xmin=5,xmax=40,ymin=0,ymax=350,xstep=2.5,ystep=25]
+ \tkzAxeX[label=$q$]
+ \tkzAxeY[label=$C(q)$] \tkzGrid
+ \tkzFct[domain=5:40]{0.1*\x**2+2*\x+60}
+ \foreach \vv in {5,10,...,40}{%
+   \tkzDefPointByFct(\vv)
+    \tkzDrawPoint(tkzPointResult)}
+ \tkzFct[domain=5:40]{(108*log(\x)-158)}
+ \tkzText(37.5,280){$C$}
+ \tkzText(37.5,220){$R$}
+ \tkzDefSetOfPoints{%
+ 5/15,10/90,15/135,20/170,25/190,30/200,35/230,40/240}
+\tkzDrawSetOfPoints[mark = x,mark size=3pt]
+\end{tikzpicture}
+
+\end{document}

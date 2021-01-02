@@ -1,0 +1,21 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=1.25]
+ \tkzInit[ymin=-1,xmax=5,ymax=3]
+ \tkzGrid
+ \tkzAxeXY
+ \tkzFct[domain = 0.5:5]{1/x}% courbe a
+ \tkzFct[domain = 1:5]{log(x)}% courbe b
+ \tkzDrawAreafg[between=b and a,
+            color=magenta!50,
+            domain = 1:4]
+\end{tikzpicture}
+
+\end{document}

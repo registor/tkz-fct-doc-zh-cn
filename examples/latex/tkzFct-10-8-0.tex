@@ -1,0 +1,26 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=1.25]
+ \tkzInit
+ \tkzGrid
+ \tkzAxeXY
+ \tkzFct[color=red,domain=1.001:1.9]{1+1/(log(x-1)**2)}
+ \tkzFct[color=red,domain = 2.1:10]{1+1/(log(x-1)**2)}
+ \tkzHLine[line width=1pt,color=red]{1}
+ \tkzVLine[line width=1pt,color=blue]{2}
+ \tkzDefPoint(1,1){A}
+ \tkzDrawPoint[fill=white,color=Maroon,size=10](A)
+ \tkzDefPointByFct[draw,with=b]({1+exp(1)})
+ \tkzLabelPoint[above right](tkzPointResult){$(1+\text{e}~;~2)$}
+ \tkzText[draw,color = black,fill = brown!20](6,6)%
+          {$f(x)=\dfrac{1}{\ln^2 (x-1)}+1$}
+\end{tikzpicture}
+
+\end{document}

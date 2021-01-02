@@ -1,0 +1,20 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=2.5]
+  \tkzInit[xmax=5,ymin=0.5,ymax=1.5,ystep=0.5]
+  \tkzGrid
+  \tkzAxeXY
+  \tkzFct[domain = 0:10]{x*exp(-x)+1}
+  \tkzHLine[color=red,style=solid,line width=1.2pt]{1}
+  \tkzDrawTangentLine[draw,color=blue](1)
+  \tkzText[draw,fill = brown!20](2,0.75){$f(x)=x \text{e}^{-x}+1$}
+ \end{tikzpicture}
+
+\end{document}

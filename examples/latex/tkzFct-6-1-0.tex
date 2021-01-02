@@ -1,0 +1,22 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}
+  \tkzInit[xmin=0,xmax=10,
+          ymin=0,ymax=1.2,ystep=0.2]
+  \tkzGrid
+  \tkzAxeXY
+  \tkzClip
+  \tkzFct[thick,color=red,domain=0.55:10]{(\x*\x+\x-1)/(\x**3)}
+  \tkzText(3,-0.3){\textbf{Courbe de} $\mathbf{f}$}
+  \tkzDefPointByFct(3)
+  \tkzText[above right,text=red](tkzPointResult){${\mathcal{C}}_f$}
+\end{tikzpicture}
+
+\end{document}

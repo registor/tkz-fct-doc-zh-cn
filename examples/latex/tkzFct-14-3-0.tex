@@ -1,0 +1,23 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=1.25]
+   \tkzInit[xmin=-6,xmax=4,ymin=-5,ymax=6]
+   \tkzGrid
+   \tkzAxeXY
+   \tkzFct[color=red,thick,domain=-6:2.1785]{(-x*x+x+2)*exp(x)}
+   \tkzSetUpPoint[size=6]
+   \tkzDrawTangentLine[draw,kl=2](0)
+   \tkzDefPoint(2,0){b}  \tkzDrawPoint(b)
+   \tkzDefPoint(-1,0){c} \tkzDrawPoint(c)
+   \tkzText(2,4){($\mathcal{C}$)}
+   \tkzText(-2,-3){($\mathcal{T}$)}
+\end{tikzpicture}
+
+\end{document}

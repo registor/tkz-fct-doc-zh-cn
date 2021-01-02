@@ -1,0 +1,26 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}[xscale=4,yscale=1.5]
+  \tkzInit[xmin=0,xmax=3,ymax=3,ymin=-4]
+  \tkzGrid(0,-4)(3,3)
+  \tkzAxeXY
+  \tkzClip
+  \tkzVLine[color=red,style=dashed]{1/3}
+  \tkzFct[color=red,domain = 0.35:3]{-3/(x*x) +4/(3*x-1)}
+  \tkzFct[color=blue,domain = 0.35:3]{-3/(x*x) +27/(4*(3*x-1))}
+  \tkzFct[color=orange,domain = 0.35:3]{-3/(x*x) +8/(3*x-1)}
+  \tkzFct[color=green,domain = 0.35:3]{-3/(x*x) +7/(3*x-1)}
+  \tkzText[draw,fill = white,text=Maroon](2,-2)%
+   {$f(x)=-\dfrac{3}{x^2}+\dfrac{8\alpha}{3x-1}$ \hspace{.5cm}%
+   avec $\alpha \in%
+   \left\{\dfrac{1}{2}~;~\dfrac{27}{32}~;~\dfrac{7}{8}~;~1\right\}$}
+\end{tikzpicture}
+
+\end{document}

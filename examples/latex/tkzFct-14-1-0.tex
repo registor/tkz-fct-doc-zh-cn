@@ -1,0 +1,24 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+         \begin{tikzpicture}[scale=3]
+          \tkzInit[xmin=0,xmax=4,ymin=-1.5,ymax=1.5]
+          \tkzAxeY[label=$f(x)$]
+          \tkzDefPoint(1,0){x} \tkzDrawPoint[color=blue,size=0.6pt](x)
+          \shade[top color=gray!80,bottom color=gray!20] (1,0)%
+                 plot[id=ln,domain=1:2.718] function{log(x)} |-(1,0);
+          \draw[color=blue] plot[id=ln,domain=0.2:4,samples=200]function{log(x)};
+          \tkzAxeX
+          \tkzText[draw,color= black,fill=brown!50](2,-1)%
+                  {$\mathcal{A} = \int_1^{\text{e}}\ln(x)\text{d}x =%
+                    \big[x\ln(x)\big]_{1}^{\text{e}} = \text{e}$}
+          \tkzText[draw,color= black,fill=brown!50](2,0.3){$\mathcal{A}$}
+         \end{tikzpicture}
+
+\end{document}

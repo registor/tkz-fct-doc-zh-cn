@@ -1,0 +1,18 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=1.75]
+  \tkzInit[xmin=-3,xmax=6,ymin=-2,ymax=14,ystep=2]
+  \tkzDrawX \tkzDrawY
+  \tkzFct[line width=2pt,color = red, domain =-3:6]{(-\x-2)*(\x-5)}
+  \tkzDrawRiemannSumSup[fill=blue!40,opacity=.5,interval=-1:5,number=10]
+  \tkzDrawRiemannSumInf[fill=green!40,opacity=.5,interval=-1:5,number=10]
+\end{tikzpicture}
+
+\end{document}

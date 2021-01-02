@@ -1,0 +1,17 @@
+%
+% tkz-euclide (14/01/2011)
+%
+% Coding (utf8) Creator (TeX) Producer (pdfeTeX)
+% Author Alain Matthes
+\input{tkzfctpreamble.ltx}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=1.5]
+ \tkzInit[xmax=700,xstep=100,ymax=1200,ystep=400]
+ \tkzGrid(0,0)(700,1200)  \tkzAxeXY
+ \tkzFct[color=red,samples=100,line width=0.8pt,domain =0:700]%
+        {(1./90000)*\x*\x*\x-(1./100)*\x*\x+(113./36)*\x}
+\end{tikzpicture}
+
+\end{document}
