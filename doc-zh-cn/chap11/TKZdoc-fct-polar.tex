@@ -1,7 +1,7 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 % \section{Courbes en coordonnées polaires}
-\section{极坐标函数曲线}
+\section{极坐标曲线}
 
  \hypertarget{tfpo}{}
 % \begin{NewMacroBox}{tkzFctPolar}{\oarg{local options}\marg{$f(t)$}}
@@ -42,7 +42,7 @@
  \toprule
  参数             & 样例 & 说明                         \\
  \midrule
-\TAline{$x(t)$,$y(t)$}{\tkzcname{tkzFctPar[0:1]}\{\tkzcname{t**3}\}\{\tkzcname{t**2}\}}{$x(t)=t^3$,$y(t)=t^2$ }
+\TAline{$x(t)$,$y(t)$}{\tkzcname{tkzFctPar[0:1]}\{\tkzcname{t**3}\}\{\tkzcname{t**2}\}}{$x(t)=t^3$,$y(t)=t^2$ } 
  \bottomrule
 \end{tabular}
 
@@ -54,7 +54,7 @@
 \midrule
 \TOline{domain}{0:2*pi}{定义域}
 \TOline{samples}{200}{采样点数}
-\TOline{id} {tkzfonct}{函数ID}
+\TOline{id} {tkzfonct}{函数id}
 \TOline{color}{black}{颜色}
 \TOline{line width} {0.4pt}{线宽}
 \TOline{style} {solid}{线型}
@@ -63,9 +63,9 @@
 
 \medskip
 \emph{
-\tkzname{gnuplot}中定义了\tkzname{pi}表示$\pi$，
-\tkzname{fp.sty}中定义了\tkzcname{FPpi}表示$\pi$，
-值域由\tkzname{fp.sty}宏包确定。
+\tkzname{gnuplot}中定义了\tkzname{pi}用于表示$\pi$，
+\tkzname{fp.sty}中定义了\tkzcname{FPpi}用于表示$\pi$，
+值域由\tkzname{fp.sty}确定。
 在代码中，既可以用\tkzname{pi}，也可以用\tkzcname{FPpi}。}
  \end{NewMacroBox}
 

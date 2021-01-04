@@ -5,13 +5,13 @@
 
 \begin{enumerate}
 % \item Modification avec les anciennes versions~:
-\item 旧版本修订：
+\item 版本修订：
   \begin{itemize}
    % \item \tkzcname{tkzTan} est devenu \tkzcname{tkzDrawTangentLine}
    \item 将\tkzcname{tkzTan}命令改为\tkzcname{tkzDrawTangentLine}命令
    % \item Désormais le domaine est donné comme avec \TIKZ\ et ce n'est plus
    %  \parg{$x_a..x_b$}
-   \item 现在，在\TIKZ{}中使用定义域，而不再使用\parg{$x_a..x_b$}的形式
+   \item 现在，在\TIKZ{}中使用定义域，而不再使用\parg{$x_a..x_b$}的表示形式
    % \item \tkzcname{tkzFctPt} est devenu \tkzcname{tkzDefPointByFct}
    \item 将\tkzcname{tkzFctPt}命令改为\tkzcname{tkzDefPointByFct}命令
   \end{itemize}
@@ -21,8 +21,9 @@
 % \item Quand une fonction est passée en argument à la macro \tkzcname{tkzFct}, elle est stockée avec la syntaxe de \tkzname{gnuplot} dans la macro \tkzcname{tkzFctgnua}. \tkzname{tkzFctgnu} est un préfixe, « a » est la référence associée à la fonction, la fonction suivante dans le même environnement \tkzname{tikzpicture} sera référencée « b » et ainsi de suite...
 \item 当函数表达式作为一个参数传递给\tkzcname{tkzFct}命令时，
 	它与\tkzname{tkzFctgnua}命令中的\tkzname{gnuplot}同时存储。
-	\tkzcname{tkzFctgnu}命令使用前缀\enquote{a}实现对该函数的引用，
-	在同一\tkzname{tikzpicture}环境中，也可以使用\enquote{b}\dots{}这样的方式按顺序对后续函数实现引用。
+	\tkzcname{tkzFctgnu}命令使用\enquote{a}实现对该函数的引用，
+	在同一\tkzname{tikzpicture}环境中，也可以使用\enquote{b}\dots{}
+	这样的方式按顺序引用定义的函数。
 
 % Elle est aussi stockée avec la syntaxe de \tkzname{fp.sty} dans la macro  \tkzcname{tkzFcta} avec le préfixe \tkzname{tkzFcta}.
 	同时，还按\tkzname{fp.sty}语法在将前缀\tkzname{tkzFcta}存储在命令\tkzcname{tkzFcta}中。
@@ -39,20 +40,20 @@
      % \item  soit que \TEX\ ne trouve pas \tkzname{gnuplot}, c'est en général un problème de « PATH »,
 		 \item  \TEX{}找不到\tkzname{gnuplot}，这多是由\enquote{PATH}环境变量设置错误引起的。
      % \item  soit \TEX\  n'autorise pas le lancement de \tkzname{gnuplot} alors c'est que l'option \tkzname{shell-escape} n'est pas autorisé.
-		 \item  \TEX{}无法启动\tkzname{gnuplot}，这主要是因为未使用\tkzname{shell-escape}编译参数引起的。
+		 \item  \TEX{}无法启动\tkzname{gnuplot}，这主要是因为未使用\tkzname{-shell-escape}编译参数引起的。
     \end{itemize}
 
-还有一种可能是xxx.gnuplot文件错误，只要用文本编辑器打开它，就可以编辑其\tkzname{gnuplot}命令。
-值得注意的是：\tkzname{gnuplot}在4.2版后，语法发生了变化(4.4或4.5后会推出新讲法)，
-使用旧版本的创建表格命令是：\tkzname{set table}。
+还有一种可能是xxx.gnuplot文件错误，此时，只需用文本编辑器打开它，就可以编辑其\tkzname{gnuplot}命令。
+值得注意的是：\tkzname{gnuplot}在4.2版后，其语法发生了变化(4.4或4.5后会推出新语法)。
+若使用旧版本，其创建表格命令是：\tkzname{set table}。
 
 
    % \item $\pi$ est, avec \tkzname{gnuplot}, défini par \tkzname{pi}
    % \item  $\pi$ est, avec \tkzname{fp.sty} défini par \tkzcname{FPpi}.
    % \item (set) samples =2 est suffisant pour tracer une droite.
-   \item 在\tkzname{gnuplot}定义了\tkzname{pi}表示$\pi$
-   \item 在\tkzname{fp.sty}定义了\tkzcname{FPpi}表示$\pi$。
-   \item 对于直线，设置采样点数为2(samples=2)则足以绘制该直线。
+   \item 在\tkzname{gnuplot}定义了\tkzname{pi}用于表示$\pi$
+   \item 在\tkzname{fp.sty}定义了\tkzcname{FPpi}用于表示$\pi$。
+   \item 对于直线，应设置采样点数为2(samples=2)。
   \end{itemize}
 
 %  \item La puissance $a^b$ est notée $a \wedge b$ avec fp et pgfmath mais $a**b$ avec gnuplot.
@@ -64,7 +65,7 @@
 
 
 % \item ({1/exp(1)}) est correct mais (1/exp(1)) donne une erreur
-\item (\{1/exp(1)\})是正确的，但(1/exp(1))是错误的
+\item (\{1/exp(1)\})是正确的，但(1/exp(1))是错误的。
 \end{enumerate}
 
 % \subsection{Fonctions de \tkzname{gnuplot}}

@@ -1,16 +1,16 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 % \subsection{Interpolation}
-\subsection{函数插值}
+\section{插值函数}
 
 % Il s'agit ici de trouver un polynôme d'interpolation sur l'intervalle $[-1~;~1]$ de la fonction $f$ définie par :
-例如，需要在$[-1~;~1]$找到对如下多项式$f$进行插值逼近：
+例如，需要在$[-1~;~1]$得到如下多项式$f$的插值逼近：
 \[
   f(x)=\frac{1}{1+8x^2}
 \]
 
 % Le polynôme d'interpolation est celui obtenu par la méthode de \tkzimp{Lagrange} :
-插值多项式为拉格朗日多项式：
+则可以使用拉格朗日多项式进行插值逼近：
 
 \begin{equation*}
 \begin{split}
@@ -22,11 +22,11 @@
 \end{equation*}
 
 % Ayant utilisé vingt et un points, le polynôme est de degré $20$. Celui-ci est écrit en utilisant la méthode de \tkzimp{Horner}. Dans un premier temps, on demande à gnuplot de tracer la courbe de f en rouge,  enfin on trace le polynôme d'interpolation en bleu. Les points utilisés sont en jaune.
-根据霍纳的定义，使用了21个点进行插值，多项式的度定义为$20$。
-下面的函数图形中，红色曲线是用\tkzname{gnuplot}绘制的函数$f$的曲线，
+根据\tkzimp{Horner}的定义，在此，使用21个点进行插值，并将多项式的度定义为$20$。
+下面的函数曲线中，红色曲线是用\tkzname{gnuplot}绘制的函数$f$，
 蓝色是插值函数，黄色为插值点。
 
-\subsubsection{Le code}
+\subsection{Le code}
 \begin{tkzexample}[code only]
 \begin{tikzpicture}
 \tkzInit[xmin=-1,xmax=1,ymin=-1.8,ymax=1.2,xstep=0.1,ystep=0.2]
@@ -62,7 +62,7 @@
 
 % Le résultat est sur la page suivante où on peut constater le phénomène de \tkzimp{Runge}.
 注意结果图像中的\tkzimp{龙格}现象。
-\subsubsection{插值曲线}
+\subsection{插值曲线}
 
 \begin{sidewaysfigure}[htbp]
 \centering

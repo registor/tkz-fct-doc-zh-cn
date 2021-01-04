@@ -1,23 +1,24 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 % \section{Macros pour tracer des tangentes }
-\section{切线绘制命令}
+\section{绘制切线}
 
 % Si une seule fonction est utilisée, elle est stockée avec comme nom
 % \tkzcname{tkzFcta}, si une deuxième fonction est utilisée, elle sera stockée avec comme nom \tkzcname{tkzFctb}, et ainsi de suite\ldots Si plusieurs fonctions sont présentent dans un même environnement alors l'option \tkzname{with} permet de choisir celle qui sera mise à contribution.
-对第1个函数命名为\tkzcname{tkzFcta}，第2个函数命名\tkzcname{tkzFctb}，以此类推\ldots。
+需要说明的是，在使用\tkzcname{tkzFct}命令定义函数后，
+对第1个函数命名为\tkzcname{tkzFcta}，第2个函数命名为\tkzcname{tkzFctb}，以此类推\ldots。
 如果一个环境中有多个函数，则可以使用\tkzname{with}指定需要使用的函数。
 
-\tkzHandBomb 注意在使用\tkzcname{tkzFct}命令和\tkzcname{tkzDrawTangentLine}命令之前，
+\tkzHandBomb 在使用\tkzcname{tkzFct}命令和\tkzcname{tkzDrawTangentLine}命令之前，
 需要使用\tkzcname{tkzInit}命令初始化绘图环境。
 可以用\tkzname{kl}和\tkzname{kr}系数指定半切线矢量长度，
 如$kl=0$或$kr=0$表示取消对应的半切线(l=left，r=right)。
 如果\tkzname{xstep=1}和\tkzname{ystep=1}，斜率为1，则半切线的长度是$\sqrt{2}$。
-其他情况下，如果半切线向量$\vec{AT}$的斜率是$p$，则半切线的坐标是(\tkzname{kl},\tkzname{kl*p})。
+其他情况下，如果半切线向量$\vec{AT}$的斜率是$p$，则半切线向量是(\tkzname{kl},\tkzname{kl*p})。
 
 
 % \subsection{Représentation d'une tangente \tkzcname{tkzDrawTangentLine}}
-\subsection{\tkzcname{tkzDrawTangentLine}命令：绘制函数切线}
+\subsection{\tkzcname{tkzDrawTangentLine}命令：绘制切线}
 \hypertarget{tdtl}{}
 % \begin{NewMacroBox}{tkzDrawTangentLine}{\oarg{命令选项}\parg{a}}
 % \emph{On l'emploie soit juste après l'utilisation de \tkzcname{tkzFct}, sinon il faut donner la référence de la fonction à l'aide de l'option \tkzname{with}.}
@@ -44,17 +45,17 @@
 % \end{tabular}
 % \end{NewMacroBox}
 %<--------------------------------------------------------------------------->
-\begin{NewMacroBox}{tkzDrawTangentLine}{\oarg{命令选项}\parg{a}}
+\begin{NewMacroBox}{tkzDrawTangentLine}{\oarg{命令选项}\parg{切点横坐标}}
 \emph{
-如果直接在\tkzcname{tkzFct}命令后使用该命令，则表示使用当前函数。
-否则，需要用\tkzname{with}指定函数。}
+如果直接在\tkzcname{tkzFct}命令后使用该命令，表示使用当前函数。
+否则，需要用\tkzname{with}选项指定函数。}
 
 \medskip
 \begin{tabular}{lll}
  \toprule
  参数             & 样例 & 说明    \\
  \midrule
- \TAline{a}{\tkzcname{tkzDrawTangentLine(0)}}{横坐标为$0$的函数点处的切线}
+ \TAline{切点横坐标}{\tkzcname{tkzDrawTangentLine(0)}}{横坐标为$0$的函数点处的切线}
  \bottomrule
 \end{tabular}
 
@@ -86,10 +87,10 @@
  \end{tikzpicture}
 
 % Il faut remarquer qu'il n'est point nécessaire  de faire des calculs. Il suffit d'utiliser les valeurs qui correspondent aux graduations.
-要说明的是，没有必要进行计算坐标真实值，只需要直接指定与刻度对应的坐标值。
+要说明的是，没有必要计算坐标真实值，只需要直接指定与刻度对应的坐标值即可。
 
 % On peut changer le styavec le des tangentes avec,  par exemple,
-可以使用如下类似代码修改切线的样式：
+例如，可以使用如下类似代码修改切线样式：
 
 \tkzcname{tikzset\{tan style/.style=\{-\}\}} 的默认设置为：
 
@@ -114,7 +115,7 @@
 % \subsection{Les options \tkzname{kl}, \tkzname{kr} et l'option \tkzname{draw}}
 \subsection{\tkzname{kl}、\tkzname{kr}和\tkzname{draw}选项}
 % Si l'un des deux nombres \tkzname{kl} ou \tkzname{kr} est nul alors seulement une demi-tangente est tracée sinon ces nombres représentent un pourcentage de la longueur initiale de la tangente. L'option \tkzname{draw} permet de tracer le point de contact.
-如果\tkzname{kl}或\tkzname{kr}为0，则只绘制半切线，否则，可以用数字表示切线长度与原始切线长度的百分比。
+如果\tkzname{kl}或\tkzname{kr}为0，则只绘制半切线，否则，可以用数字表示切线长度与切向量长度的百分比。
 \tkzname{draw}选项表示需要绘制切点。
 
 \begin{tkzexample}[]
@@ -135,7 +136,7 @@
 \subsection{\tkzname{with}选项}
 % Soit on place la macro  \tkzcname{tkzDrawTangentLine}    après la ligne
 %  qui définit la première fonction $(a)$, soit  on trace une autre fonction avant, et dans ce cas, il est nécessaire de préciser quelle fonction sera utilisée. pour se faire, on utilise l'option \tkzname{with}.
-可以将\tkzcname{tkzDrawTangentLine}放在第一个函数定义代码行之后，表示使用该函数$(a)$，
+可以将\tkzcname{tkzDrawTangentLine}放在第一个函数定义代码行之后，表示使用该函数，
 当然，也可以使用\tkzname{with}选项指定需要绘制切线的函数。
 
 \begin{tkzexample}[]
@@ -175,7 +176,7 @@
 % \subsection{Demi-tangentes }
 \subsection{半切线}
 % Il faut remarquer que les tangentes sont en réalité deux demi-tangentes ce qui permet d'obtenir simplement le résultat ci-dessous.
-注意，切线实际上有两条半切线，例如对于函数：
+注意，切线有两条半切线，例如对于函数：
 
 % Poosible sont les écritures \tkzname{(((x+1)*x)*x)**0.5},   \tkzname{(x**3+x**2)**0.5} et \tkzname{(x*x*x+x*x)**(0.5)}.
 \tkzname{(((x+1)*x)*x)**0.5}(\tkzname{(x**3+x**2)**0.5}或\tkzname{(x*x*x+x*x)**(0.5)}).
@@ -199,7 +200,7 @@
 \subsection{Lorentz曲线的半切线}
 
 % Ici, on ne veut que les demi-tangentes comprises entre 0 et 1, pour cela il suffit dans un cas de donner la valeur 0 à \tkzname{kr} et dans l'autre à \tkzname{kl}.
-在此，只需得到0和1之间的半切线，仅需为\tkzname{kr}和\tkzname{kl}赋合适的值即可。
+在此，只需得到0和1之间的半切线，为此，仅需\tkzname{kr}和\tkzname{kl}取合适的值即可。
 
 \begin{center}
 \begin{tkzexample}[vbox]
@@ -234,12 +235,13 @@
 \end{tikzpicture}
 \end{tkzexample}
 %<--------------------------------------------------------------------------->
-\subsection{无曲线的切线族}
+\subsection{无曲线切线族}
 
 % Pour cela, il faut définir la dernière expression avec la syntaxe de \tkzname{fp.sty}.
-为此，必须使用符合\tkzname{fp.sty}宏包语法的表达式定义函数。
+由于不需要绘制函数曲线，因此不能使用\tkzcname{tkzFct}命令定义函数，
+为此，必须使用符合\tkzname{fp.sty}语法的表达式定义函数。
 
-需要定义\tkzcname{tkzFctLast}全局宏。
+需要定义\tkzcname{tkzFctLast}全局宏以保存函数表达式。
 
 \begin{tkzltxexample}[]
 	 \global\edef\tkzFctLast{x*exp(x)}
@@ -263,14 +265,14 @@
 
 
 \newpage
-\subsection{计算的历史记录}
+\subsection{历史记录}
 
 % Un problème surgit si on emploie une expression contenant des parenthèses dans l'argument, ainsi \tkzname{(\{1/exp(1)\})} est correct  mais \tkzname{(1/exp(1))} donne une erreur. Il est aussi possible d'évaluer l'antécédent postérieurement comme cela~:
 如果在参数中使用带有括号的表达式，则会出现问题。
-如\tkzname{(\{1/exp(1)\})}是正确的，但\tkzname{(1/exp(1))}则会引发错误。
+所以，\tkzname{(\{1/exp(1)\})}是正确的，但\tkzname{(1/exp(1))}则会引发错误。
 在后续计算中，也需要注意该问题。
 
-\subsubsection{提前定义计算结果}
+\subsubsection{保存计算结果}
 \begin{tkzltxexample}[]  \FPeval\vx{1/exp(1)}
 \end{tkzltxexample}
 

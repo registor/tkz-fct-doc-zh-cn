@@ -26,7 +26,7 @@
 %
 % \emph{C'est donc la dernière fonction définie qui est utilisée. Si une autre fonction, est utilisée alors il faut utiliser l'ancienne macro \tkzcname{tkzFctPt}. Le point est défini sous un nom générique \tkzname{tkzPointResult} mais non tracé. Afin de le tracer il faut utiliser la macro \tkzcname{tkzDrawPoint}.}
 % \end{NewMacroBox}
-\begin{NewMacroBox}{tkzDefPointByFct}{\parg{$decimal number$}}
+\begin{NewMacroBox}{tkzDefPointByFct}{\parg{横坐标值}}
 \emph{
 该命令允许使用十进制数表示的$x$坐标，通过函数计算，定义函数曲线的一个点。
 }
@@ -36,31 +36,31 @@
  \toprule
  参数             & 样例 & 说明                         \\
  \midrule
- \TAline{decimal number}{\tkzcname{tkzDefPointByFct(0)}}{设置横坐标为$0$的函数上的点}
+ \TAline{横坐标值}{\tkzcname{tkzDefPointByFct(0)}}{定义函数曲线上横坐标为$0$的点}
  \bottomrule
 \end{tabular}
 
 \begin{tabular}{lll}
  选项             & 默认值 & 说明                         \\
  \midrule
- \TOline{draw}{false}{允许使用当前样式绘制点}
- \TOline{with}{a}{用指定的函数定义点，函数按自然序用字母编号}
- \TOline{ref}{empty}{设置引用名称}
+ \TOline{draw}{false}{允许使用当前样式绘制该点}
+ \TOline{with}{a}{指定函数，根据\tkzcname{tkzFct}命令定义的自然序，用字母编号}
+ \TOline{ref}{empty}{设置定义点的引用名称}
  \bottomrule
 \end{tabular}
 
 \emph{
-该命令使用最近使用的函数定义点，如果需要使用别的函数，
-则需要使用旧的\tkzcname{tkzFctPt}命令。
-可以通过\tkzname{tkzPointResult}命令使用定义的点，
-但如果需要绘制该点，则需要使用\tkzcname{tkzDrawPoint}。
+该命令使用最近使用的函数定义点，如果需使用别的函数，
+请使用旧的\tkzcname{tkzFctPt}命令。
+可以通过\tkzcname{tkzPointResult}命令使用当前定义的点，
+但如果需要绘制该点，则需要使用\tkzcname{tkzDrawPoint}命令。
 }
 \end{NewMacroBox}
 
 % \subsection{Exemple avec \tkzcname{tkzGetPoint}}
 \subsection{\tkzcname{tkzGetPoint}命令示例}
 % Cela permet de référencer le point créé par \tkzcname{tkzDefPointByFct}.
-该命令可以引用\tkzcname{tkzDefPointByFct}命令定义的点。
+该命令可以引用用\tkzcname{tkzDefPointByFct}命令定义的点。
 
 \begin{center}
 \begin{tkzexample}[vbox]
@@ -79,8 +79,8 @@
 \newpage
 % \subsection{Exemple avec \tkzcname{tkzGetPoint} et \tkzname{tkzPointResult}}
 % Il est possible de ne pas référencer le point et d'utiliser la référence générique.
-\subsection{\tkzcname{tkzGetPoint}和\tkzname{tkzPointResult}命令示例}
-可以直接使用一个定义过点，而不需要保存并命令该点(后续引用)。
+\subsection{\tkzcname{tkzGetPoint}命令和\tkzname{tkzPointResult}}
+如果不需要保存并命名定义的点，则可以用\tkzname{tkzPointResult}直接该点，。
 
 \begin{tkzexample}[latex=7cm,small]
 \begin{tikzpicture}[scale=1.25]
@@ -98,7 +98,7 @@
 % \subsection{Options \tkzname{draw} et \tkzname{ref}}
 \subsection{\tkzname{draw}和\tkzname{ref}选项}
 % Cela permet de tracer un point directement avec les options usuelles donc sans possibilités de personnaliser et d'attribuer une référence à ce point.
-\tkzname{draw}允许直接绘制定义的点，\tkzname{ref}允许为定义的点命名，
+\tkzname{draw}允许在定义点时直接绘制该点，\tkzname{ref}允许为定义的点命名，
 并在后续代码中通过该名称引用该点。
 
 \begin{tkzexample}[latex=7cm,small]
@@ -115,10 +115,10 @@
 
 \newpage
 % \subsection{Placer des points sans courbe}
-\subsection{仅绘制函数曲线上的点}
+\subsection{仅绘制函数曲线点}
 % Attention, ceci est délicat. Il suffit de définir la macro \tkzcname{tkzFctLast} qui est la dernière expression traduite avec la syntaxe de \tkzname{fp.sty}. Les points sont donc déterminer avec \tkzname{fp.sty}.
-注意，需提前定义表示函数的\tkzcname{tkzFctLast}全局宏(\tkzcname{global}\tkzcname{edef})。
-因为这一操作是通过\tkzname{fp.sty}宏包实现的，因此，该宏中的函数定义需要使用\tkzname{fp.sty}的语法。
+该例中，需提前定义表示函数的\tkzcname{tkzFctLast}全局宏(\tkzcname{global}\tkzcname{edef})。
+由于通过\tkzname{fp.sty}宏包实现，因此，该宏中的函数定义需要使用\tkzname{fp.sty}语法。
 
 \begin{tkzexample}[]
 \begin{tikzpicture}[xscale=3,yscale=2]
@@ -133,12 +133,12 @@
 \end{tkzexample}
 
 \newpage\null
-\subsection{与实际坐标无关的点}
+\subsection{使用绘图坐标定义点}
 
 % Cette fois, le domaine s'étend de 0 à 800, les valeurs prises par la fonction de $0$ à $\numprint{2000}$. \tkzname{xstep=100} donc il faut utliser |\x| à la place de $x$. Une petite astuce au niveau de gnuplot, 1. et 113. permettent d'obtenir une division dans les décimaux sinon la division se fait dans les entiers.
-在此，将函数定义域设置为$0$至$\numprint{800}$，值域设置为$0$ à $\numprint{2000}$。
-由于\tkzname{xstep=100}，所以需要在函数定义中用|\x|代替$x$。
-注意用$1.$和$113.$带小数点的数实现浮点数运算。
+在此，将函数定义域设置为$0$至$\numprint{800}$，值域设置为$0$ 至 $\numprint{2000}$。
+由于\tkzname{xstep=100}，所以在函数定义中应使用|\x|代替$x$。
+注意，要用$1.$和$113.$带小数点的数实现浮点数运算。
 
 \begin{tkzexample}[]
 \begin{tikzpicture}[scale=1.6]
@@ -157,7 +157,7 @@
 
 \newpage
 % \subsection{Placer des points avec deux fonctions}
-\subsection{设置点的样式}
+\subsection{设置点样式}
 
 \medskip
 % Revoir \tkzcname{tkzSetUpPoint}  et \tkzcname{tkzText} du module \tkzname{tkz-base.sty}

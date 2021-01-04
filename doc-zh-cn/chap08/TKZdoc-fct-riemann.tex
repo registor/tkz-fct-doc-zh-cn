@@ -25,12 +25,12 @@
 \toprule
 选项             & 默认值 & 含义                         \\
 \midrule
-\TOline{interval}{1:2}{计算区间的长度}
-\TOline{number}{10}{区间内子间隔数}
+\TOline{interval}{1:2}{区间长度}
+\TOline{number}{10}{子间隔数}
 \bottomrule
 \end{tabular}
 
-可以将四个命令组合在一起，并使用相同的选项。
+可以组合使用四个相关命令，并为其设置相同选项。
 \end{NewMacroBox}
 
 \subsection{求黎曼和}
@@ -53,7 +53,7 @@
 % C'est une variante de la macro précédente mais les rectangles sont toujours sous la courbe.
 %  \end{NewMacroBox}
 \begin{NewMacroBox}{tkzDrawRiemannSumInf}{\oarg{命令选项}}
-是前一个命令变体，但矩形始终位于函数曲线下方。
+是第1个命令的变体，但分割矩形始终位于函数曲线下方。
  \end{NewMacroBox}
 
  \subsection{\tkzcname{tkzDrawRiemannSumInf}命令示例}
@@ -73,7 +73,7 @@
 % C'est une variante de la macro précédente mais les rectangles sont toujours au-dessus de  la courbe.
 %  \end{NewMacroBox}
  \begin{NewMacroBox}{tkzDrawRiemannSumSup}{\oarg{命令选项}}
-第1个命令的变体，但矩形始终位于函数曲线上方。
+第1个命令的变体，但分割矩形始终位于函数曲线上方。
  \end{NewMacroBox}
 
 % \subsection{Somme de Riemann Inf et Sup}
@@ -95,7 +95,7 @@
 % C'est une variante de la macro précédente mais les rectangles sont à cheval sur la courbe.
 %  \end{NewMacroBox}
  \begin{NewMacroBox}{tkzDrawRiemannSumMid}{\oarg{命令选项}}
-第1个命令的变体，但矩形始终位于函数曲线上。
+第1个命令的变体，但分割矩形始终位于函数曲线。
  \end{NewMacroBox}
 
 % \subsection{Somme de Riemann Mid}

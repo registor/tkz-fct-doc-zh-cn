@@ -1,7 +1,7 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 % \section{Courbes avec équations paramétrées}
-\section{参数方程的函数曲线}
+\section{参数曲线}
  \hypertarget{tfpa}{}
 % \begin{NewMacroBox}{tkzFctPar}{\oarg{local options}\marg{$x(t)$}\marg{$y(t)$}}
 %   \emph{$x(t)$ et $y(t)$ sont des expressions utilisant la syntaxe de \tkzname{gnuplot}. La variable est $t$.}
@@ -31,7 +31,7 @@
 % \end{tabular}
 %  \end{NewMacroBox}
 \begin{NewMacroBox}{tkzFctPar}{\oarg{命令选项}\marg{$x(t)$}\marg{$y(t)$}}
-\emph{用\tkzname{gnuplot}语法表示$x(t)$和$y(t)$函数，$t$是参数变量。}
+\emph{用\tkzname{gnuplot}语法表示$x(t)$和$y(t)$函数，$t$是参数方程自变量。}
 
 \medskip
 \begin{tabular}{lll}
@@ -49,8 +49,8 @@
 选项             & 默认值 & 含义                         \\
 \midrule
 \TOline{domain}{-5:5}{定义域}
-\TOline{samples}{200}{采样点}
-\TOline{id} {tkzfonct}{函数ID}
+\TOline{samples}{200}{采样点数}
+\TOline{id} {tkzfonct}{函数id}
 \TOline{color}{black}{颜色}
 \TOline{line width} {0.4pt}{线宽}
 \TOline{style} {solid}{线型}
@@ -144,7 +144,7 @@ y(t) &=\sin^3(t)\\
 \newpage
 \subsection{参数曲线示例5}
 % Saint Valentin version 1
-心形曲线v1
+心形曲线V1
 \begin{align*}
 x(t) &=\sin^3(t)\\
 y(t) &=\cos(t)-\cos^4(t)\\

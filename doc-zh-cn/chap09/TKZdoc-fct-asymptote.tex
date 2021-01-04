@@ -28,14 +28,14 @@
 %
 % \emph{voir les options les lignes dans \TIKZ}
 % \end{NewMacroBox}
-\begin{NewMacroBox}{tkzVLine}{\oarg{命令选项}\marg{decimal number}}
+\begin{NewMacroBox}{tkzVLine}{\oarg{命令选项}\marg{横坐标}}
 由于无法使用\tkzname{gnuplot}绘制直线，该命令需要使用\tkzname{fp}语法定义函数。
 
 \begin{tabular}{lll}
   \toprule
 参数 &  样例  & 含义  \\
 \midrule
-\TAline{decimal number}{\tkzcname{tkzVLine\{1\}}}{垂线$x=1$}
+\TAline{横坐标}{\tkzcname{tkzVLine\{1\}}}{垂线：$x=1$}
 \bottomrule
 \end{tabular}
 
@@ -86,14 +86,14 @@
 % \end{tabular}
 %
 % \end{NewMacroBox}
-\begin{NewMacroBox}{tkzVLines}{\oarg{命令选项}\marg{list of values}}
+\begin{NewMacroBox}{tkzVLines}{\oarg{命令选项}\marg{横坐标列表}}
 由于无法使用\tkzname{gnuplot}绘制直线，该命令需要使用\tkzname{fp}语法定义函数。
 
 \begin{tabular}{lll}
   \toprule
 参数 &  样例  & 含义  \\
 \midrule
-\TAline{list of values}{\tkzcname{tkzVLines\{1,4\}}}{垂线$x=1$和$x=4$}
+\TAline{横坐标列表}{\tkzcname{tkzVLines\{1,4\}}}{垂线：$x=1$和$x=4$}
 \bottomrule
 \end{tabular}
 
@@ -110,7 +110,7 @@
 \end{tikzpicture}
 \end{tkzexample}
 
-\subsection{用\tkzname{fp}计算垂线}
+\subsection{用\tkzname{fp}宏包计算垂线}
 \begin{tkzexample}[]
 \begin{tikzpicture}
   \tkzInit[xmin=-7,xmax=7,ymin=-1,ymax=1]
@@ -130,11 +130,11 @@
 % \TAline{decimal number}{\tkzcname{tkzVLine\{1\}}}{Trace la droite $y=1$}
 % \end{tabular}
 % \end{NewMacroBox}
-\begin{NewMacroBox}{tkzHLine}{\oarg{命令选项}\marg{decimal number}}
+\begin{NewMacroBox}{tkzHLine}{\oarg{命令选项}\marg{纵坐标}}
 \begin{tabular}{lll}
 参数 &  样例  & 含义  \\
 \midrule
-\TAline{decimal number}{\tkzcname{tkzVLine\{1\}}}{水平线$y=1$}
+\TAline{纵坐标}{\tkzcname{tkzVLine\{1\}}}{水平线：$y=1$}
 \end{tabular}
 \end{NewMacroBox}
 
@@ -179,11 +179,11 @@
 % \bottomrule
 % \end{tabular}
 % \end{NewMacroBox}
-\begin{NewMacroBox}{tkzHLines}{\oarg{命令选项}\marg{list of values}}
+\begin{NewMacroBox}{tkzHLines}{\oarg{命令选项}\marg{纵坐标列表}}
 \begin{tabular}{lll}
 参数 &  样例  & 含义  \\
 \midrule
-\TAline{list of values}{\tkzcname{tkzHLines\{1,4\}}}{水平线$y=1$和$y=4$}
+\TAline{纵坐标列表}{\tkzcname{tkzHLines\{1,4\}}}{水平线：$y=1$和$y=4$}
 \bottomrule
 \end{tabular}
 \end{NewMacroBox}
